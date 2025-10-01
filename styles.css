@@ -1,0 +1,90 @@
+:root {
+  --evi-red: #a72702;
+  --evi-black: #1a1a1a;
+  --evi-gray: #666;
+  --evi-light-gray: #f5f5f5;
+  --evi-border: #ddd;
+  --evi-success: #2e7d32;
+  --evi-warning: #ed6c02;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--evi-black);
+  background: #fff;
+  padding: 20px;
+}
+
+.container { max-width: 1400px; margin: 0 auto; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 3px solid var(--evi-red);
+  margin-bottom: 30px;
+}
+
+.logo { height: 60px; }
+
+h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--evi-black);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 30px;
+}
+
+.main-content {
+  background: #fff;
+  padding: 20px;
+  border: 1px solid var(--evi-border);
+  border-radius: 4px;
+}
+
+.section {
+  background: var(--evi-light-gray);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  border-left: 4px solid var(--evi-red);
+}
+
+.section h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--evi-black);
+}
+
+.form-group { margin-bottom: 15px; }
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--evi-gray);
+  font-size: 14px;
+}
+
+input[type="text"], select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--evi-border);
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+textarea { min-height: 80px; resize: vertical; font-family: inherit; }
+
+button {
+  background: var(--evi-red);
+  color: #fff;
+}
