@@ -6,8 +6,8 @@
               Kampagnenname (intern)
               <span class="help-icon" title="Name für diese Bulk-Generierung">ℹ️</span>
             </label>
-            <input type="text" value="Insolvenzen Multi-Locations" placeholder="z.B. Jobs Österreich-weit">
-            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren</span>
+            <input type="text" value="Stellenausschreibungen Bundesministerien" placeholder="z.B. Firmenbuch Neueintragungen AT-weit">
+            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren (z.B. Familie + Org-Typ)</span>
           </div>
 
           <div class="form-group">
@@ -15,9 +15,9 @@
               URL-Struktur Pattern
               <span class="help-icon" title="Template für alle generierten URLs">ℹ️</span>
             </label>
-            <input type="text" value="/lp/{org_slug}-{location_slug}" placeholder="/lp/{org_slug}-{location_slug}">
+            <input type="text" value="/lp/{familie_slug}-{org_slug}-{location_slug}" placeholder="/lp/{familie_slug}-{typ_slug}-{org_slug}-{location_slug}">
             <span class="inline-help">
-              Platzhalter: {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/polizei-wien
+              Platzhalter: {familie_slug}, {typ_slug}, {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/firmenbuch-neueintragung-wien
             </span>
           </div>
 
