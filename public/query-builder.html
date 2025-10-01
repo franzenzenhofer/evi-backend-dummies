@@ -103,17 +103,30 @@
           </p>
 
           <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
-            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Index & Volltext</h3>
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Datenquelle</h3>
 
             <div class="form-group">
-              <label>Index/Domain (Datenquelle)</label>
-              <select>
-                <option value="insolvenzen" selected>Insolvenzen</option>
-                <option value="jobs">Jobs/Stellenausschreibungen</option>
-                <option value="ausschreibungen">Ausschreibungen</option>
-                <option value="foerderungen">Förderungen</option>
-                <option value="bekanntmachungen">Amtliche Bekanntmachungen</option>
-              </select>
+              <label>Datenquellen (Mehrfachauswahl)</label>
+              <div style="border: 1px solid var(--evi-border); padding: 10px; background: #fff;">
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox" checked> Alles (alle Datenquellen)
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Insolvenzen
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Jobs/Stellenausschreibungen
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Ausschreibungen
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Förderungen
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Immobilien
+                </label>
+              </div>
             </div>
 
             <div class="form-group">
@@ -123,7 +136,18 @@
               </label>
               <input type="text" placeholder='z.B. "Bau Handel" oder "Informatik"'>
               <span class="inline-help">
-                Volltextsuche über Titel, Beschreibung, Inhalte. Leer lassen für alle Einträge.
+                <strong>Such-Operatoren:</strong> <code>-</code> = NOT (ausschließen), <code>+</code> = MUST HAVE (erforderlich), <code>OR</code> = ODER-Verknüpfung
+              </span>
+              <label style="margin-top: 8px;">
+                <input type="checkbox"> Als Regex interpretieren
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label>Title-Suche (optional)</label>
+              <input type="text" placeholder='z.B. "Baumeister" oder "Software"'>
+              <span class="inline-help">
+                Sucht nur in Titeln. Leer lassen für alle Titel.
               </span>
             </div>
           </div>
@@ -131,13 +155,22 @@
           <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
             <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
               Geografie
-              <span class="help-icon" title="Geografische Filter - kombinierbar">ℹ️</span>
+              <span class="help-icon" title="Geografische Filter">ℹ️</span>
             </h3>
 
             <div class="form-group">
+              <label>
+                <input type="checkbox" checked> Alle (ganz Österreich)
+              </label>
+              <span class="inline-help">
+                Wenn aktiviert, werden die geografischen Filter unten ignoriert.
+              </span>
+            </div>
+
+            <div class="form-group" style="opacity: 0.5; pointer-events: none;">
               <label>Bundesland (Mehrfachauswahl)</label>
               <select multiple size="5" style="height: auto;">
-                <option value="wien" selected>Wien</option>
+                <option value="wien">Wien</option>
                 <option value="noe">Niederösterreich</option>
                 <option value="ooe">Oberösterreich</option>
                 <option value="sbg">Salzburg</option>
@@ -148,23 +181,16 @@
                 <option value="bgld">Burgenland</option>
               </select>
               <span class="inline-help">
-                Strg/Cmd + Klick für Mehrfachauswahl. Leer = alle Bundesländer.
+                Strg/Cmd + Klick für Mehrfachauswahl.
               </span>
             </div>
 
-            <div class="form-group">
-              <label>Bezirk (optional, abhängig von Bundesland)</label>
-              <input type="text" placeholder="z.B. Wien 1., Innsbruck-Stadt">
-            </div>
-
-            <div class="form-group">
-              <label>PLZ (optional)</label>
-              <input type="text" placeholder="z.B. 1010, 1020">
-            </div>
-
-            <div class="form-group">
-              <label>Gemeinde (optional)</label>
-              <input type="text" placeholder="z.B. Wien, Graz, Linz">
+            <div class="form-group" style="opacity: 0.5; pointer-events: none;">
+              <label>PLZ (optional, komma-getrennt)</label>
+              <input type="text" placeholder="z.B. 1010, 1020, 8010">
+              <span class="inline-help">
+                Mehrere PLZ mit Komma trennen.
+              </span>
             </div>
           </div>
 
@@ -187,19 +213,14 @@
                 Rolling: Fenster verschiebt sich täglich. Fest: Start- und End-Datum fix.
               </span>
             </div>
-          </div>
-
-          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
-            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Status</h3>
 
             <div class="form-group">
-              <label>Status-Filter (Mehrfachauswahl)</label>
-              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-                <label><input type="checkbox" checked> Offen</label>
-                <label><input type="checkbox" checked> Geschlossen</label>
-                <label><input type="checkbox"> Laufend</label>
-                <label><input type="checkbox"> Abgeschlossen</label>
-              </div>
+              <label>
+                <input type="checkbox" checked> Zeige abgelaufenen Content
+              </label>
+              <span class="inline-help">
+                Einige Content-Typen wie Jobs haben ein Ablaufdatum. Wenn aktiviert, werden auch abgelaufene Einträge angezeigt.
+              </span>
             </div>
           </div>
 
@@ -279,21 +300,19 @@
 
           <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
             <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
-              Zero-Result Fallback
+              Zero-Result Policy
               <span class="help-icon" title="Was passiert bei 0 Ergebnissen?">ℹ️</span>
             </h3>
 
             <div class="form-group">
-              <label>Fallback-Strategie</label>
+              <label>Bei 0 Ergebnissen</label>
               <select>
-                <option value="geo-up" selected>Geo erweitern (Stadt → Bezirk → Bundesland)</option>
-                <option value="time-expand">Zeitfenster erweitern</option>
-                <option value="both">Beides (erst Geo, dann Zeit)</option>
-                <option value="none">Keine Fallback (zeige 0 Ergebnisse)</option>
+                <option value="404" selected>HTTP 404 (nicht in Sitemap, nicht verlinkt)</option>
+                <option value="empty">Zeige leere Ergebnisseite (0 Ergebnisse angezeigt)</option>
               </select>
               <span class="inline-help">
-                Bei 0 Ergebnissen automatisch auf Parent-Geo oder breiteres Zeitfenster switchen.
-                Banner "Ergebnisse erweitert" wird angezeigt.
+                404: Seite wird nicht generiert.<br>
+                Leere Seite: Wird generiert mit "Keine Ergebnisse gefunden" Message.
               </span>
             </div>
           </div>
@@ -358,6 +377,12 @@
                 {latest-result-date}
               </code>
               <span>→ "30.09.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{brand}')">
+                {brand}
+              </code>
+              <span>→ "EVI.gv.at"</span>
 
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
                     onclick="navigator.clipboard.writeText('{top-facet:branche}')">
@@ -466,54 +491,10 @@
             <label>Robots</label>
             <div style="display: flex; gap: 15px;">
               <label><input type="checkbox" checked> Index</label>
-              <label><input type="checkbox" checked> Follow</label>
             </div>
             <span class="inline-help">
               ⚠️ QC warnt bei: noindex + Sitemap include (Mismatch)
             </span>
-          </div>
-
-          <div class="form-group">
-            <label>Pagination Policy</label>
-            <select>
-              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
-              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>OpenGraph / Twitter</label>
-            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
-            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
-            <div style="margin-top: 10px;">
-              <label>
-                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
-              </label>
-              <label style="margin-left: 15px;">
-                <input type="radio" name="og-image" value="upload"> Upload Image...
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Schema.org</label>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-              <label><input type="checkbox" checked> ItemList (mit itemCount)</label>
-              <label><input type="checkbox" checked> BreadcrumbList</label>
-              <label><input type="checkbox"> FAQPage (bei FAQ im Body)</label>
-            </div>
-            <span class="inline-help">
-              ItemList: nur erste 10 Items; BreadcrumbList: Auto-generiert aus Slug
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>Hreflang (Multi-Language)</label>
-            <select>
-              <option value="none" selected>Keine (nur de-AT)</option>
-              <option value="de-de">de-AT + de-DE</option>
-              <option value="multi">Mehrsprachig...</option>
-            </select>
           </div>
 
           <div class="form-group">
@@ -538,53 +519,64 @@
               Nur Seite 1 wird in Sitemap gelistet (bei Pagination)
             </span>
           </div>
-        </div>
-
-        <div class="section" id="section-05">
-          <h2>05. Enrichment (optional)</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Erweiterte Features zur Anreicherung der Landing Page mit Zusatzinformationen.
-          </p>
 
           <div class="form-group">
-            <label>
-              <input type="checkbox">
-              Google Trends Widget aktivieren
-              <span class="help-icon" title="Zeigt Interest-over-time Chart">ℹ️</span>
-            </label>
-            <div style="margin-left: 25px; margin-top: 10px;">
-              <input type="text" placeholder="Query (z.B. Insolvenzen)" style="width: 200px; margin-right: 10px;">
-              <input type="text" placeholder="Geo (z.B. AT-W)" style="width: 100px; margin-right: 10px;">
-              <select style="width: 120px;">
-                <option>Last 90 days</option>
-                <option>Last 12 months</option>
-                <option>Last 5 years</option>
-              </select>
+            <label>Pagination Policy</label>
+            <select>
+              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
+              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
+              <option value="all">Alle Ergebnisse auf einer Seite anzeigen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>OpenGraph</label>
+            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>OG Image</label>
+            <div>
+              <label>
+                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
+              </label>
             </div>
-            <span class="inline-help" style="margin-left: 25px;">
-              Rendert ein kleines Chart + "Interest over time" Copy-Block auf der Seite.
-            </span>
+            <div style="margin-top: 10px;">
+              <label>
+                <input type="radio" name="og-image" value="upload"> Upload eigenes Bild
+              </label>
+              <input type="file" accept="image/*" style="margin-left: 10px; display: none;" id="og-upload">
+            </div>
           </div>
 
           <div class="form-group">
-            <label>
-              <input type="checkbox">
-              Berechnete Statistiken aktivieren
-              <span class="help-icon" title="Aktiviert Zusatz-Platzhalter">ℹ️</span>
-            </label>
-            <span class="inline-help" style="margin-left: 25px;">
-              Berechnet: % MoM Delta, Top 3 Bezirke, Top 3 Branchen.
-              <br>
-              Aktiviert Platzhalter: <code>{trend-delta}</code>, <code>{top-facet:bezirk}</code>, etc.
+            <label>FAQ Editor (Schema.org)</label>
+            <span class="inline-help">
+              Erstellen Sie FAQs. Schema.org FAQPage wird automatisch generiert.
             </span>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin-top: 10px; background: #fff;">
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 1:</label>
+                <input type="text" placeholder="z.B. Was sind Insolvenzen?" style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 2:</label>
+                <input type="text" placeholder="Weitere Frage..." style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <button class="secondary" onclick="alert('FAQ hinzufügen')">+ FAQ hinzufügen</button>
+            </div>
           </div>
 
-          <div style="background: var(--evi-light-gray); padding: 12px; margin: 15px 0; border-radius: 4px;">
-            <strong style="font-size: 12px;">ℹ️ Hinweis:</strong>
-            <p style="font-size: 11px; margin: 5px 0 0 0;">
-              Enrichment-Daten werden bei Live-Modus täglich um 03:00 Uhr neu berechnet.
-              Bei Snapshot-Modus: Einmalig beim Publish.
-            </p>
+          <div class="form-group">
+            <label>Hreflang (Multi-Language)</label>
+            <select>
+              <option value="none" selected>Keine (nur de-AT)</option>
+              <option value="de-de">de-AT + de-DE</option>
+              <option value="multi">Mehrsprachig...</option>
+            </select>
           </div>
         </div>
 
