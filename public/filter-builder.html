@@ -3,261 +3,268 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filter Builder - Multi-Page Generator - EVI.gv.at</title>
+  <title>Multi-Page Builder - Bulk Generator - EVI.gv.at</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../styles-extended.css">
   <style>
     .help-icon { cursor: help; color: var(--evi-red); font-size: 14px; margin-left: 5px; }
+    .placeholder-btn { background: var(--evi-light-gray); border: 1px solid var(--evi-border);
+      padding: 5px 10px; font-size: 12px; border-radius: 3px; cursor: pointer; margin-left: 10px; }
+    .placeholder-btn:hover { background: var(--evi-border); }
     .inline-help { font-size: 11px; color: var(--evi-gray); margin-top: 3px; display: block; }
+    .filter-chip { display: inline-block; background: var(--evi-red); color: #fff;
+      padding: 5px 10px; border-radius: 15px; margin: 2px; font-size: 12px; }
+    .qc-blocker { color: #d32f2f; font-weight: bold; }
+    .qc-warning { color: var(--evi-warning); }
+    .qc-pass { color: var(--evi-success); }
     .main-content { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .matrix-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 15px 0; }
     .matrix-table th { background: var(--evi-red); color: #fff; padding: 8px; text-align: left; }
     .matrix-table td { border: 1px solid var(--evi-border); padding: 6px; }
     .matrix-table tr:hover { background: var(--evi-light-gray); }
-    .org-checkbox-list { max-height: 300px; overflow-y: auto; border: 1px solid var(--evi-border);
-      padding: 10px; background: #fff; }
-    .org-checkbox-list label { display: block; padding: 5px 0; }
-    .location-tree { padding-left: 20px; }
-    .location-tree summary { cursor: pointer; padding: 5px 0; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <img src="../logo.svg" alt="EVI.gv.at Logo" class="logo">
-      <h1>Filter Builder - Multi-Page Generator</h1>
+      <h1>Multi-Page Builder - Bulk Landing Page Generator</h1>
       <p style="font-size: 14px; color: var(--evi-gray); margin: 5px 0 0 0;">
-        Bulk-Generierung von Landing Pages für Organization × Location Kombinationen
+        Erstellen Sie mehrere Landing Pages gleichzeitig: Organisationen × Locations
       </p>
     </div>
 
     <div class="main-content">
 
-        <div class="section" id="section-A">
-          <h2>A. Scope & Template Selection</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Definieren Sie den Rahmen für die Multi-Page Generierung
-          </p>
+        <div class="section" id="section-01">
+          <h2>01. Basis</h2>
 
           <div class="form-group">
-            <label>Datenquellen (Mehrfachauswahl)</label>
-            <div style="border: 1px solid var(--evi-border); padding: 10px; background: #fff;">
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox"> Alle Datenquellen
-              </label>
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox" checked> Insolvenzen
-              </label>
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox"> Jobs/Stellenausschreibungen
-              </label>
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox"> Ausschreibungen
-              </label>
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox"> Förderungen
-              </label>
-              <label style="display: block; padding: 3px 0;">
-                <input type="checkbox"> Immobilien
-              </label>
-            </div>
-            <span class="inline-help">
-              Mehrfachauswahl erlaubt. Für jede Datenquelle werden separate Seiten generiert.
-            </span>
+            <label>
+              Kampagnenname (intern)
+              <span class="help-icon" title="Name für diese Bulk-Generierung">ℹ️</span>
+            </label>
+            <input type="text" value="Insolvenzen Multi-Locations" placeholder="z.B. Jobs Österreich-weit">
+            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren</span>
           </div>
 
           <div class="form-group">
-            <label>Template Basis</label>
-            <select>
-              <option>Standard Landing Page Template</option>
-              <option>Custom Template (Upload HTML)</option>
-            </select>
+            <label>
+              URL-Struktur Pattern
+              <span class="help-icon" title="Template für alle generierten URLs">ℹ️</span>
+            </label>
+            <input type="text" value="/lp/{org_slug}-{location_slug}" placeholder="/lp/{org_slug}-{location_slug}">
             <span class="inline-help">
-              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, {separator}, {results-number}, etc.
+              Platzhalter: {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/polizei-wien
             </span>
           </div>
 
           <div class="form-group">
             <label>
-              <input type="checkbox" checked> Zeige abgelaufenen Content
+              Modus
+              <span class="help-icon" title="Live = immer aktuell, Snapshot = eingefroren">ℹ️</span>
             </label>
+            <select>
+              <option value="live" selected>
+                Live (alle Seiten zeigen aktuelle Daten, täglich um 03:00 Uhr aktualisiert)
+              </option>
+              <option value="snapshot">
+                Snapshot (Ergebnis-IDs zum Publish-Zeitpunkt eingefroren, keine Updates)
+              </option>
+            </select>
             <span class="inline-help">
-              Gilt für alle generierten Seiten. Einige Content-Typen wie Jobs haben ein Ablaufdatum.
+              Gilt für ALLE generierten Seiten dieser Kampagne.
             </span>
           </div>
 
           <div class="form-group">
-            <label>URL Struktur</label>
+            <label>Status</label>
             <select>
-              <option>/lp/{org-slug}-{location-slug}</option>
-              <option>/{location-slug}/{org-slug}</option>
-              <option>/org/{org-slug}/loc/{location-slug}</option>
-              <option>Custom (mit Platzhaltern)</option>
+              <option value="draft">Entwurf</option>
+              <option value="review">Zur Prüfung</option>
+              <option value="published">Veröffentlicht</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>
-              <input type="checkbox" checked>
-              Generate parent pages (e.g., /lp/alle-insolvenzen-wien)
-            </label>
-            <span class="inline-help">
-              Erstellt zusätzlich Aggregation-Seiten für alle Organizations in einer Location
-            </span>
+            <label>Erstellt von</label>
+            <input type="text" value="Franz Enzenhofer" disabled>
           </div>
 
-          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px; border-left: 4px solid #1976d2;">
-            <strong style="font-size: 12px; color: #1565c0;">ℹ️ Erwartete Seiten:</strong>
-            <p style="font-size: 11px; margin: 5px 0 0 0; color: #1565c0;">
-              Bei 15 Organizations × 9 Bundesländer = 135 Seiten + 9 Parent Pages = 144 Seiten total
-            </p>
+          <div class="form-group">
+            <label>Version</label>
+            <input type="text" value="1" disabled>
+            <span class="inline-help">Versionshistorie mit Diff-Viewer und Rollback-Funktion verfügbar</span>
           </div>
         </div>
 
-        <div class="section" id="section-B">
-          <h2>B. Organizations Selection</h2>
+        <div class="section" id="section-02">
+          <h2>02. Organisationen auswählen</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Wählen Sie die Organisationen für die Multi-Page Generierung
+            Wählen Sie die Organisationen, für die Landing Pages generiert werden sollen.
           </p>
-
-          <div class="form-group">
-            <label>Suche Organizations</label>
-            <input type="text" placeholder="Suchen nach Name, Branche, Rechtsform..."
-                   onkeyup="alert('Filter würde hier die Liste unten einschränken')">
-          </div>
-
-          <div class="form-group">
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-              <button class="secondary" onclick="alert('Alle Organizations auswählen')">✅ Alle</button>
-              <button class="secondary" onclick="alert('Alle abwählen')">❌ Keine</button>
-              <button class="secondary" onclick="alert('Top 50 nach Ergebnissen')">🔝 Top 50</button>
-            </div>
-
-            <div class="org-checkbox-list">
-              <label><input type="checkbox" checked> <strong>Wiener Stadtwerke GmbH</strong> (1.247 Ergebnisse)</label>
-              <label><input type="checkbox" checked> <strong>ÖBB-Infrastruktur AG</strong> (892 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Bundesministerium für Finanzen</strong> (734 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>ASFINAG</strong> (623 Ergebnisse)</label>
-              <label><input type="checkbox" checked> <strong>Wien Energie GmbH</strong> (511 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Österreichische Post AG</strong> (487 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>A1 Telekom Austria AG</strong> (401 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Magistrat der Stadt Wien</strong> (387 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>ÖBB-Personenverkehr AG</strong> (312 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Wiener Linien GmbH</strong> (289 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Verbund AG</strong> (245 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Land Niederösterreich</strong> (223 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Bundesrechenzentrum GmbH</strong> (198 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>ÖBB-Holding AG</strong> (187 Ergebnisse)</label>
-              <label><input type="checkbox"> <strong>Bundesimmobiliengesellschaft</strong> (156 Ergebnisse)</label>
-            </div>
-
-            <span class="inline-help">
-              Aktuell: 3 Organizations ausgewählt. Strg/Cmd+Click für Multi-Select.
-            </span>
-          </div>
 
           <div class="form-group">
             <label>
-              <input type="checkbox">
-              Automatisch neue Organizations hinzufügen (Min. 50 Ergebnisse)
+              <input type="checkbox" checked> Alle Organisationen
             </label>
             <span class="inline-help">
-              Wenn aktiviert: Neue Org mit ≥50 Ergebnissen wird automatisch in Bulk-Generation aufgenommen
+              Wenn aktiviert, werden alle verfügbaren Organisationen verwendet.
             </span>
+          </div>
+
+          <div class="form-group" style="opacity: 0.5; pointer-events: none;">
+            <label>Organisationen (Mehrfachauswahl)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; background: #fff; max-height: 400px; overflow-y: auto;">
+              <label style="display: block; padding: 5px 0; font-weight: bold;">
+                <input type="checkbox"> Behörden
+              </label>
+              <div style="padding-left: 20px;">
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Polizei
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Finanzamt
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Bezirksamt
+                </label>
+              </div>
+
+              <label style="display: block; padding: 5px 0; font-weight: bold; margin-top: 10px;">
+                <input type="checkbox"> Gerichte
+              </label>
+              <div style="padding-left: 20px;">
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Handelsgericht
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Landesgericht
+                </label>
+              </div>
+
+              <label style="display: block; padding: 5px 0; font-weight: bold; margin-top: 10px;">
+                <input type="checkbox"> Öffentliche Stellen
+              </label>
+              <div style="padding-left: 20px;">
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Magistrat
+                </label>
+                <label style="display: block; padding: 3px 0;">
+                  <input type="checkbox"> Gemeinde
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 12px;">Ausgewählt: 8 Organisationen</strong>
           </div>
         </div>
 
-        <div class="section" id="section-C">
-          <h2>C. Locations Selection</h2>
+        <div class="section" id="section-03">
+          <h2>03. Locations auswählen</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Geografische Auswahl mit hierarchischer Struktur: Bundesland → Bezirk → Stadt
+            Wählen Sie die geografischen Regionen, für die Landing Pages generiert werden sollen.
           </p>
 
           <div class="form-group">
-            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-              <button class="secondary" onclick="alert('Alle Bundesländer auswählen')">✅ Alle BL</button>
-              <button class="secondary" onclick="alert('Alle abwählen')">❌ Keine</button>
-              <button class="secondary" onclick="alert('Nur Hauptstädte')">🏙️ Hauptstädte</button>
-            </div>
-
-            <details open class="location-tree">
-              <summary><strong>🇦🇹 Wien</strong> (234 Bezirke/Gemeinden)</summary>
-              <div style="padding-left: 20px;">
-                <label><input type="checkbox" checked> Wien Stadt (Gesamt)</label>
-                <label><input type="checkbox"> 1010 Innere Stadt</label>
-                <label><input type="checkbox"> 1020 Leopoldstadt</label>
-                <label><input type="checkbox"> 1030 Landstraße</label>
-              </div>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Niederösterreich</strong> (573 Gemeinden)</summary>
-              <div style="padding-left: 20px;">
-                <label><input type="checkbox"> Niederösterreich (Gesamt)</label>
-                <details>
-                  <summary>Bezirk Amstetten (28 Gemeinden)</summary>
-                  <div style="padding-left: 20px;">
-                    <label><input type="checkbox"> Amstetten Stadt</label>
-                    <label><input type="checkbox"> Ardagger</label>
-                  </div>
-                </details>
-              </div>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Oberösterreich</strong> (442 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Steiermark</strong> (286 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Salzburg</strong> (119 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Tirol</strong> (277 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Vorarlberg</strong> (96 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Kärnten</strong> (132 Gemeinden)</summary>
-            </details>
-
-            <details class="location-tree">
-              <summary><strong>Burgenland</strong> (171 Gemeinden)</summary>
-            </details>
-
+            <label>
+              <input type="checkbox"> Alle Locations (ganz Österreich)
+            </label>
             <span class="inline-help">
-              Aktuell: 2 Locations ausgewählt (Wien Stadt, 1010 Innere Stadt)
+              Wenn aktiviert, werden alle Bundesländer und Bezirke verwendet.
             </span>
+          </div>
+
+          <div class="form-group">
+            <label>Bundesländer & Bezirke (Mehrfachauswahl)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; background: #fff; max-height: 400px; overflow-y: auto;">
+              <details open>
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0;">
+                  <input type="checkbox" checked> Wien (9 Bezirke)
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0;">
+                    <input type="checkbox" checked> 1. Bezirk - Innere Stadt
+                  </label>
+                  <label style="display: block; padding: 3px 0;">
+                    <input type="checkbox" checked> 2. Bezirk - Leopoldstadt
+                  </label>
+                  <label style="display: block; padding: 3px 0;">
+                    <input type="checkbox" checked> 3. Bezirk - Landstraße
+                  </label>
+                  <label style="display: block; padding: 3px 0; color: var(--evi-gray);">
+                    ... 6 weitere Bezirke
+                  </label>
+                </div>
+              </details>
+
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0;">
+                  <input type="checkbox"> Niederösterreich (21 Bezirke)
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0;">
+                    <input type="checkbox"> Baden
+                  </label>
+                  <label style="display: block; padding: 3px 0;">
+                    <input type="checkbox"> Bruck an der Leitha
+                  </label>
+                  <label style="display: block; padding: 3px 0; color: var(--evi-gray);">
+                    ... 19 weitere Bezirke
+                  </label>
+                </div>
+              </details>
+
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0;">
+                  <input type="checkbox"> Oberösterreich
+                </summary>
+              </details>
+            </div>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 12px;">Ausgewählt: 9 Locations (Wien + Bezirke)</strong>
           </div>
         </div>
 
-        <div class="section" id="section-C2">
-          <h2>C2. Headline & Intro Templates</h2>
+        <div class="section" id="section-04">
+          <h2>04. Headline & Intro Template</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            H1 und Intro-Text werden für jede generierte Seite aus diesen Templates erstellt.
+            Template gilt für ALLE generierten Seiten. Platzhalter werden pro Seite ersetzt.
           </p>
+
+          <div class="form-group">
+            <label>H1 Überschrift Template</label>
+            <input type="text" value="{org_name} {location_name} {separator} {brand}"
+                   placeholder="z.B. {org_name} {location_name}">
+            <span class="inline-help">
+              Verfügbare Platzhalter: {org_name}, {org_short}, {location_name}, {separator}, {results-number}, {brand}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser Template (Rich Text)</label>
+            <textarea rows="3">Aktuelle Informationen zu {org_name} in {location_name}. {results-number} Einträge verfügbar.</textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+          </div>
+        </div>
+
+        <div class="section" id="section-04">
+          <h2>04. Content</h2>
 
           <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
             <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
             <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 10px; font-size: 12px;">
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
-                    onclick="navigator.clipboard.writeText('{org-name}')">
-                {org-name}
+                    onclick="navigator.clipboard.writeText('{query-term}')">
+                {query-term}
               </code>
-              <span>→ "Wiener Stadtwerke GmbH"</span>
-
-              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
-                    onclick="navigator.clipboard.writeText('{org-short}')">
-                {org-short}
-              </code>
-              <span>→ "Stadtwerke Wien"</span>
+              <span>→ "Insolvenzen"</span>
 
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
                     onclick="navigator.clipboard.writeText('{location-name}')">
@@ -272,6 +279,42 @@
               <span>→ "1.274"</span>
 
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number-rounded}')">
+                {results-number-rounded}
+              </code>
+              <span>→ "1,3 Tsd."</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{time-window}')">
+                {time-window}
+              </code>
+              <span>→ "letzte 90 Tage"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{publish-date}')">
+                {publish-date}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{last-updated}')">
+                {last-updated}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{first-result-date}')">
+                {first-result-date}
+              </code>
+              <span>→ "15.03.2024"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{latest-result-date}')">
+                {latest-result-date}
+              </code>
+              <span>→ "30.09.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
                     onclick="navigator.clipboard.writeText('{brand}')">
                 {brand}
               </code>
@@ -281,127 +324,94 @@
                     onclick="navigator.clipboard.writeText('{separator}')">
                 {separator}
               </code>
-              <span>→ " - " (Trennzeichen)</span>
+              <span>→ " - " (Trennzeichen, z.B. für Titles)</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{top-facet:branche}')">
+                {top-facet:branche}
+              </code>
+              <span>→ "Bau, Handel, Dienstleistungen"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{trend-delta}')">
+                {trend-delta}
+              </code>
+              <span>→ "+12% zum Vormonat" (nur mit Enrichment)</span>
             </div>
           </div>
 
-          <div class="form-group">
-            <label>H1 Template</label>
-            <input type="text" value="Insolvenzen {org-name} {separator} {location-name}"
-                   placeholder="z.B. Jobs {org-name} {location-name}">
-            <span class="inline-help">
-              Wird für jede generierte Seite mit den entsprechenden Werten gefüllt.
-            </span>
-          </div>
+          <h3 style="font-size: 15px; margin: 25px 0 15px 0;">Content-Blöcke</h3>
 
           <div class="form-group">
-            <label>Intro / Teaser Template (Rich Text)</label>
-            <textarea rows="3">Aktuelle Übersicht zu Insolvenzen bei {org-name} in {location-name}. Insgesamt {results-number} Fälle.</textarea>
+            <label>Body VOR der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="Einleitungstext, Kontext, Hinweise..."></textarea>
             <label style="margin-top: 5px;">
               <input type="checkbox"> Als HTML interpretieren
             </label>
-            <span class="inline-help">
-              Intro-Text erscheint vor der Ergebnisliste auf jeder generierten Seite.
-            </span>
-          </div>
-        </div>
-
-        <div class="section" id="section-D">
-          <h2>D. Quality Criteria & Policy</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Minimum-Standards für generierte Seiten definieren
-          </p>
-
-          <div class="form-group">
-            <label>Minimum Ergebnisse pro Seite</label>
-            <input type="number" value="5" style="width: 100px;">
-            <span class="inline-help">
-              Seiten mit weniger Ergebnissen werden NICHT generiert oder mit noindex versehen
-            </span>
           </div>
 
           <div class="form-group">
-            <label>Zero-Result Policy</label>
+            <label>Listen-Layout</label>
             <select>
-              <option>Seite nicht generieren (404)</option>
-              <option>Seite mit noindex + "Keine Ergebnisse" Message</option>
-              <option>Geo-Up Fallback (z.B. Bezirk → Bundesland)</option>
-              <option>Custom Fallback Query</option>
+              <option value="list" selected>Liste (Standard)</option>
+              <option value="grid">Grid (Karten)</option>
+              <option value="map-list">Karte + Liste</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Data Quality Filters</label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox" checked>
-              Duplikate entfernen (fuzzy matching 85%)
-            </label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox">
-              Min. 3 ausgefüllte Felder pro Ergebnis
-            </label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox">
-              Nur Ergebnisse mit deutscher Sprache
-            </label>
+            <label>Ergebnisse pro Seite</label>
+            <input type="number" value="15" min="1" max="100">
+            <span class="inline-help">Standard: 15 (kann auch 20 sein, siehe Spec)</span>
           </div>
 
           <div class="form-group">
-            <label>Refresh Policy</label>
-            <select>
-              <option>Live-Modus (täglich 03:00 Uhr Update)</option>
-              <option>Snapshot (einmalig bei Generierung)</option>
-              <option>Wöchentlich (Montag 03:00 Uhr)</option>
-              <option>Monatlich (1. des Monats)</option>
-            </select>
+            <label>Expose Filters (optional)</label>
+            <input type="text" placeholder="z.B. bezirk,branche"
+                   value="bezirk,branche">
             <span class="inline-help">
-              Bei Live-Modus: JSON-LD itemCount + Ergebniszahl wird täglich aktualisiert
+              Besucher-sichtbare Filter als Chips. Komma-getrennt.
             </span>
           </div>
 
-          <div style="background: #fff3e0; padding: 12px; margin: 15px 0; border-radius: 4px; border-left: 4px solid #f57c00;">
-            <strong style="font-size: 12px; color: #e65100;">⚠️ Hinweis:</strong>
-            <p style="font-size: 11px; margin: 5px 0 0 0; color: #e65100;">
-              Seiten unter Minimum werden automatisch auf noindex gesetzt.
-              Überwachen Sie die "Zero Results Report" regelmäßig!
-            </p>
+          <div class="form-group">
+            <label>Body NACH der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="Erklärungen, CTAs, weitere Informationen..."></textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
           </div>
-        </div>
 
-        <div class="section" id="section-D2">
-          <h2>D2. SEO Templates</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            SEO-Einstellungen für alle generierten Seiten. Platzhalter werden automatisch ersetzt.
-          </p>
+          <h3 style="font-size: 15px; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid var(--evi-border);">04.1 SEO</h3>
 
           <div class="form-group">
             <label>
-              Meta Title Template {separator} {brand}
+              Meta Title {separator} {brand}
               <span style="color: var(--evi-gray); font-weight: normal;">(max 60 Zeichen empfohlen)</span>
             </label>
-            <input type="text" value="Insolvenzen {org-short} {separator} {location-name} {separator} {brand}"
-                   placeholder="z.B. Jobs {org-short} {separator} {location-name} {separator} {brand}">
+            <input type="text" value="Insolvenzen Wien {separator} aktuelle Fälle {separator} {brand}"
+                   placeholder="z.B. {query-term} {location-name} {separator} {brand}">
             <span class="inline-help">
-              Aktuell: <strong>~55 Zeichen</strong> ✅ (Platzhalter unterstützt). {separator} = " - "
+              Aktuell: <strong>52 Zeichen</strong> ✅ (Platzhalter unterstützt). {separator} = " - "
             </span>
           </div>
 
           <div class="form-group">
             <label>
-              Meta Description Template
+              Meta Description
               <span style="color: var(--evi-gray); font-weight: normal;">(max 160 Zeichen empfohlen)</span>
             </label>
-            <textarea rows="2">{results-number} Insolvenzen bei {org-name} in {location-name}. Aktuelle Übersicht & Details.</textarea>
+            <textarea rows="2">{results-number} Insolvenzen in {location-name}. Trends & Verteilung nach Bezirken.</textarea>
             <span class="inline-help">
-              Aktuell: <strong>~75 Zeichen</strong> ✅ (Platzhalter unterstützt)
+              Aktuell: <strong>78 Zeichen</strong> ✅ (Platzhalter unterstützt)
             </span>
           </div>
 
           <div class="form-group">
             <label>Canonical</label>
             <select>
-              <option value="self" selected>Self (jede Seite)</option>
-              <option value="parent">Parent Page (Aggregation)</option>
+              <option value="self" selected>Self (diese Seite)</option>
+              <option value="custom">Custom URL...</option>
               <option value="none">Keine</option>
             </select>
             <span class="inline-help">
@@ -414,14 +424,11 @@
             <div style="display: flex; gap: 15px;">
               <label><input type="checkbox" checked> Index</label>
             </div>
-            <span class="inline-help">
-              Seiten unterhalb des Qualitätsschwellenwerts werden automatisch auf noindex gesetzt.
-            </span>
           </div>
 
           <div class="form-group">
             <label>Sitemap</label>
-            <label><input type="checkbox" checked> In Sitemap aufnehmen (nur Seiten ≥ Qualitätsschwellenwert)</label>
+            <label><input type="checkbox" checked> In Sitemap aufnehmen</label>
           </div>
 
           <div class="form-group">
@@ -435,20 +442,20 @@
 
           <div class="form-group">
             <label>OpenGraph</label>
-            <input type="text" placeholder="OG Title Template (optional, sonst Meta Title)">
-            <textarea rows="2" placeholder="OG Description Template (optional, sonst Meta Description)"></textarea>
+            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
           </div>
 
           <div class="form-group">
             <label>OG Image</label>
             <div>
               <label>
-                <input type="radio" name="og-image-template" value="auto" checked> Auto-generieren (Title + Org Logo)
+                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
               </label>
             </div>
             <div style="margin-top: 10px;">
               <label>
-                <input type="radio" name="og-image-template" value="upload"> Upload Template-Bild
+                <input type="radio" name="og-image" value="upload"> Upload eigenes Bild
               </label>
               <input type="file" accept="image/*" style="margin-left: 10px;">
             </div>
@@ -457,13 +464,13 @@
           <div class="form-group">
             <label>FAQ Editor (Schema.org)</label>
             <span class="inline-help">
-              Erstellen Sie Template-FAQs für alle Seiten. Schema.org FAQPage wird automatisch generiert.
+              Erstellen Sie FAQs. Schema.org FAQPage wird automatisch generiert.
             </span>
             <div style="border: 1px solid var(--evi-border); padding: 15px; margin-top: 10px; background: #fff;">
               <div style="margin-bottom: 15px;">
                 <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 1:</label>
-                <input type="text" placeholder="z.B. Was sind Insolvenzen bei {org-name}?" style="margin-bottom: 5px;">
-                <textarea rows="2" placeholder="Antwort... (kann Platzhalter enthalten)"></textarea>
+                <input type="text" placeholder="z.B. Was sind Insolvenzen?" style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
               </div>
               <div style="margin-bottom: 15px;">
                 <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 2:</label>
@@ -483,101 +490,13 @@
             </select>
           </div>
         </div>
+        <!-- End of section-04 -->
 
-        <div class="section" id="section-E">
-          <h2>E. Generation Preview & Impact Analysis (DRY-RUN)</h2>
+        <div class="section" id="section-05">
+          <h2>05. Interlinking</h2>
+
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Vorschau ALLER zu generierenden Seiten mit Ergebniszahlen, URLs, und QC-Status
-          </p>
-
-          <div style="display: flex; gap: 12px; margin-bottom: 15px;">
-            <button onclick="alert('Dry-Run wird ausgeführt...')">🔍 Dry-Run starten</button>
-            <button class="secondary" onclick="alert('Export als CSV')">📥 Export CSV</button>
-          </div>
-
-          <div style="background: #e8f5e9; border-left: 4px solid #388e3c; padding: 12px; margin: 15px 0;">
-            <strong style="color: #2e7d32;">✅ DRY-RUN ERFOLGREICH</strong>
-            <p style="font-size: 11px; margin: 5px 0 0 0; color: #2e7d32;">
-              6 Seiten werden generiert. 0 Blocker. 2 Warnungen (unter empfohlenen 50 Ergebnissen).
-            </p>
-          </div>
-
-          <table class="matrix-table">
-            <thead>
-              <tr>
-                <th>Organization</th>
-                <th>Location</th>
-                <th>URL</th>
-                <th>Ergebnisse</th>
-                <th>Status</th>
-                <th>QC</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Wiener Stadtwerke GmbH</td>
-                <td>Wien</td>
-                <td><code>/lp/wiener-stadtwerke-wien</code></td>
-                <td style="text-align: right; font-weight: bold;">234</td>
-                <td style="color: var(--evi-success);">✅ OK</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-              <tr>
-                <td>Wiener Stadtwerke GmbH</td>
-                <td>Wien 1010</td>
-                <td><code>/lp/wiener-stadtwerke-wien-1010</code></td>
-                <td style="text-align: right;">12</td>
-                <td style="color: var(--evi-warning);">⚠️ Low</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-              <tr>
-                <td>ÖBB-Infrastruktur AG</td>
-                <td>Wien</td>
-                <td><code>/lp/oebb-infrastruktur-wien</code></td>
-                <td style="text-align: right; font-weight: bold;">187</td>
-                <td style="color: var(--evi-success);">✅ OK</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-              <tr>
-                <td>ÖBB-Infrastruktur AG</td>
-                <td>Wien 1010</td>
-                <td><code>/lp/oebb-infrastruktur-wien-1010</code></td>
-                <td style="text-align: right;">8</td>
-                <td style="color: var(--evi-warning);">⚠️ Low</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-              <tr>
-                <td>Wien Energie GmbH</td>
-                <td>Wien</td>
-                <td><code>/lp/wien-energie-wien</code></td>
-                <td style="text-align: right; font-weight: bold;">156</td>
-                <td style="color: var(--evi-success);">✅ OK</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-              <tr>
-                <td>Wien Energie GmbH</td>
-                <td>Wien 1010</td>
-                <td><code>/lp/wien-energie-wien-1010</code></td>
-                <td style="text-align: right;">7</td>
-                <td style="color: var(--evi-warning);">⚠️ Low</td>
-                <td style="color: var(--evi-success);">✅ Pass</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style="background: #fff3e0; padding: 12px; margin: 15px 0; border-radius: 4px; border-left: 4px solid #f57c00;">
-            <strong style="font-size: 12px; color: #e65100;">⚠️ 2 Warnungen:</strong>
-            <ul style="font-size: 11px; margin: 5px 0 0 0; padding-left: 20px; color: #e65100;">
-              <li>/lp/wiener-stadtwerke-wien-1010: 12 Ergebnisse (empfohlen: ≥50)</li>
-              <li>/lp/wien-energie-wien-1010: 7 Ergebnisse (empfohlen: ≥50)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="section" id="section-F">
-          <h2>F. Interlinking & Navigation</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Fügen Sie automatische Verlinkungsblöcke zu allen generierten Seiten hinzu. Default: 2 Blöcke.
+            Fügen Sie automatische Verlinkungsblöcke hinzu. Default: 2 Blöcke mit je 5 zufälligen Links.
           </p>
 
           <div id="interlinking-blocks">
@@ -590,7 +509,7 @@
 
               <div class="form-group">
                 <label>Überschrift für diesen Block</label>
-                <input type="text" value="Verwandte Seiten" placeholder="z.B. Weitere Insolvenzen...">
+                <input type="text" value="EVI.gv.at Archiv" placeholder="z.B. Verwandte Seiten, Mehr zum Thema...">
               </div>
 
               <div class="form-group">
@@ -613,13 +532,12 @@
                     editorialLinks.style.pointerEvents = 'none';
                   }
                 ">
-                  <option value="geo-siblings" selected>Geo-Siblings (gleiche Org, andere Locations)</option>
-                  <option value="org-siblings">Org-Siblings (gleiche Location, andere Orgs)</option>
-                  <option value="parent-child">Parent-Child Links</option>
-                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
-                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
-                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
-                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="random-main" selected>Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query">Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
                   <option value="custom">Custom Query (Mini Query Filter)</option>
                   <option value="editorial">Editorial Links</option>
                 </select>
@@ -652,9 +570,9 @@
                 <!-- Editorial Links - always visible, grayed out unless Editorial -->
                 <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
-                  <div id="editorial-links-f1">
+                  <div id="editorial-links">
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
-                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
                       <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
                     </div>
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
@@ -693,7 +611,7 @@
 
               <div class="form-group">
                 <label>Überschrift für diesen Block</label>
-                <input type="text" value="Weitere Informationen" placeholder="z.B. Andere Organizations...">
+                <input type="text" value="Weitere Informationen" placeholder="z.B. Verwandte Seiten...">
               </div>
 
               <div class="form-group">
@@ -716,13 +634,12 @@
                     editorialLinks.style.pointerEvents = 'none';
                   }
                 ">
-                  <option value="geo-siblings">Geo-Siblings (gleiche Org, andere Locations)</option>
-                  <option value="org-siblings" selected>Org-Siblings (gleiche Location, andere Orgs)</option>
-                  <option value="parent-child">Parent-Child Links</option>
-                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
-                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
-                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
-                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="random-main">Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query" selected>Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
                   <option value="custom">Custom Query (Mini Query Filter)</option>
                   <option value="editorial">Editorial Links</option>
                 </select>
@@ -752,9 +669,9 @@
                 <!-- Editorial Links - always visible, grayed out unless Editorial -->
                 <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
-                  <div id="editorial-links-f2">
+                  <div id="editorial-links-2">
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
-                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
                       <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
                     </div>
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
@@ -786,93 +703,173 @@
           </div>
 
           <button class="secondary" onclick="alert('Neuen Interlinking Block hinzufügen')">+ Weiterer Interlinking Block</button>
-
-          <div class="form-group" style="margin-top: 20px;">
-            <label>Breadcrumbs</label>
-            <select>
-              <option>Auto (Home → Index → Organization → Location)</option>
-              <option>Custom Template</option>
-              <option>Deaktiviert</option>
-            </select>
-          </div>
         </div>
+        <!-- End of section-05 -->
 
-        <div class="section" id="section-G">
-          <h2>G. Bulk Publishing & Monitoring</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Veröffentlichung ALLER generierten Seiten mit Schedule und Monitoring
-          </p>
+        <div class="section" id="section-06">
+          <h2>06. Quality Control & Publishing</h2>
 
           <div style="background: #e8f5e9; border-left: 4px solid #388e3c; padding: 15px; margin: 15px 0;">
-            <strong style="color: #2e7d32;">✅ BEREIT ZUR BULK-VERÖFFENTLICHUNG</strong>
+            <strong style="color: #2e7d32;">✅ BEREIT ZUR VERÖFFENTLICHUNG</strong>
             <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #2e7d32;">
-              <li>6 Seiten bereit zur Generierung</li>
-              <li>Alle QC-Checks bestanden</li>
-              <li>Template validiert</li>
-              <li>URLs eindeutig (keine Duplikate)</li>
+              <li>Slug ist eindeutig (/lp/insolvenzen-wien)</li>
+              <li>H1 vorhanden (50 Zeichen)</li>
+              <li>Intro vorhanden (92 Zeichen)</li>
+              <li>1.274 Ergebnisse (über Minimum von 5)</li>
+              <li>Robots-Index + Sitemap: konsistent ✅</li>
+              <li>Canonical korrekt konfiguriert</li>
             </ul>
           </div>
+
+          <div style="background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
+            <strong style="color: #e65100;">⚠️ WARNUNGEN (nicht blockierend)</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #e65100;">
+              <li>Meta Description könnte detaillierter sein (&lt;100 Zeichen) → <a href="#section-04">Bearbeiten</a></li>
+              <li>OG Image: Auto-generiert (empfohlen: Custom Upload) → <a href="#section-04">Upload</a></li>
+            </ul>
+          </div>
+
+          <!-- Beispiel: Blocker (wird nur gezeigt wenn vorhanden) -->
+          <!-- <div style="background: #ffebee; border-left: 4px solid #d32f2f; padding: 15px; margin: 15px 0; display: none;">
+            <strong style="color: #c62828;">⛔ BLOCKER (Veröffentlichung gesperrt)</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #c62828;">
+              <li>Duplicate Slug: /lp/insolvenzen-wien existiert bereits → <a href="#section-01">Ändern</a></li>
+              <li>Zero results + kein Fallback konfiguriert → <a href="#section-02">Fallback aktivieren</a></li>
+              <li>H1 fehlt → <a href="#section-03">H1 eingeben</a></li>
+              <li>Canonical Konflikt: Custom URL existiert nicht → <a href="#section-04">Korrigieren</a></li>
+              <li>Robots noindex + Sitemap include (Mismatch) → <a href="#section-04">Konsistenz herstellen</a></li>
+            </ul>
+          </div> -->
 
           <div class="form-group">
             <label>Schedule Publishing (optional)</label>
             <input type="datetime-local">
             <span class="inline-help">
-              Leer lassen für sofortige Bulk-Generierung. Zeit in CET.
+              Leer lassen für sofortige Veröffentlichung. Zeit in CET.
             </span>
           </div>
 
           <div class="form-group">
-            <label>Batch-Größe</label>
-            <input type="number" value="50" style="width: 100px;">
-            <span class="inline-help">
-              Bei großen Mengen (>100 Seiten): Generierung wird in Batches aufgeteilt (je 50 Seiten)
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>
-              <input type="checkbox" checked>
-              Monitoring aktivieren (Daily Zero-Results Report)
-            </label>
-            <span class="inline-help">
-              Täglich um 04:00 Uhr: E-Mail mit Seiten unter Minimum-Ergebnissen
-            </span>
+            <label>Versionierung</label>
+            <div style="background: var(--evi-light-gray); padding: 10px; border-radius: 4px;">
+              <strong>Version 1</strong> - Erstellt von Franz Enzenhofer am 01.10.2025 10:30<br>
+              <small>
+                <a href="#" onclick="alert('Diff-Viewer öffnen')">📊 Änderungen ansehen</a> |
+                <a href="#" onclick="alert('Rollback zu Version...')">↩️ Rollback</a>
+              </small>
+            </div>
           </div>
 
           <div style="display: flex; gap: 12px; margin-top: 25px; flex-wrap: wrap;">
-            <button onclick="alert('Vorschau einer Beispielseite wird geöffnet...')">
-              🔍 Beispielseite Vorschau
+            <button onclick="alert('Vorschau wird in neuem Tab geöffnet...')" style="flex: 1; min-width: 150px;">
+              🔍 Vorschau
             </button>
-            <button class="secondary" onclick="alert('Entwurf gespeichert!')">
+            <button class="secondary" onclick="alert('Entwurf gespeichert!')" style="flex: 1; min-width: 150px;">
               💾 Entwurf speichern
             </button>
-            <button onclick="if(confirm('6 Seiten jetzt generieren und veröffentlichen?')) alert('Bulk-Generierung gestartet!')"
-                    style="background: var(--evi-success); border-color: var(--evi-success);">
-              🚀 Jetzt Veröffentlichen (6 Seiten)
+            <button class="secondary" onclick="alert('Zur Prüfung eingereicht!')" style="flex: 1; min-width: 150px;">
+              📋 Zur Prüfung
+            </button>
+            <button onclick="if(confirm('Seite jetzt veröffentlichen?')) alert('Seite wird veröffentlicht!')"
+                    style="flex: 1; min-width: 150px; background: var(--evi-success); border-color: var(--evi-success);">
+              🚀 Veröffentlichen
             </button>
           </div>
 
           <div style="background: #e3f2fd; padding: 12px; margin: 20px 0; border-radius: 4px; border-left: 4px solid #1976d2;">
-            <strong style="font-size: 12px; color: #1565c0;">ℹ️ Nach Bulk-Veröffentlichung:</strong>
+            <strong style="font-size: 12px; color: #1565c0;">ℹ️ Nach Veröffentlichung:</strong>
             <ul style="font-size: 11px; margin: 5px 0 0 0; padding-left: 20px; color: #1565c0;">
-              <li>Alle Seiten werden als Static HTML (SSR) + JSON-LD generiert</li>
-              <li>Sitemap wird mit allen neuen URLs aktualisiert</li>
-              <li>GSC-Ping für jede URL (max. 50 URLs/Request)</li>
-              <li>Bei Live-Modus: Background Jobs aktiviert</li>
-              <li>Monitoring Dashboard verfügbar unter /admin/lp-monitor</li>
+              <li>Seite wird als Static HTML (SSR) + JSON-LD generiert</li>
+              <li>Cache Key: <code>lp:insolvenzen-wien:v1</code></li>
+              <li>Wird in Sitemap aufgenommen (Priority 0.6, changefreq daily)</li>
+              <li>Bei Live-Modus: Background Job um 03:00 Uhr aktiviert</li>
+              <li>GSC-Ping wird ausgelöst</li>
             </ul>
-          </div>
-
-          <hr style="margin: 40px 0;">
-
-          <div style="text-align: center; padding: 30px 0;">
-            <a href="query-builder.html" style="display: inline-block; background: var(--evi-red); color: #fff;
-               padding: 15px 30px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold;">
-              ← Zurück zum Query Builder (Single-Page)
-            </a>
           </div>
         </div>
 
+        <div class="section" id="section-07">
+          <h2>07. Vorschau: Generierte Seiten Matrix</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Diese Matrix zeigt alle Seiten, die durch die Kombination von Organisationen × Locations generiert werden.
+          </p>
+
+          <div style="background: #e3f2fd; padding: 15px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 14px;">📊 Gesamt: 72 Seiten werden generiert</strong><br>
+            <span style="font-size: 12px; color: var(--evi-gray);">
+              8 Organisationen × 9 Locations = 72 Landing Pages
+            </span>
+          </div>
+
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Organisation</th>
+                <th>Wien</th>
+                <th>1. Bezirk</th>
+                <th>2. Bezirk</th>
+                <th>3. Bezirk</th>
+                <th>...</th>
+                <th>Gesamt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Polizei</strong></td>
+                <td><a href="/lp/polizei-wien">/lp/polizei-wien</a></td>
+                <td><a href="/lp/polizei-innere-stadt">/lp/polizei-innere-stadt</a></td>
+                <td><a href="/lp/polizei-leopoldstadt">/lp/polizei-leopoldstadt</a></td>
+                <td><a href="/lp/polizei-landstrasse">/lp/polizei-landstrasse</a></td>
+                <td style="color: var(--evi-gray);">...</td>
+                <td><strong>9 Seiten</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Finanzamt</strong></td>
+                <td><a href="/lp/finanzamt-wien">/lp/finanzamt-wien</a></td>
+                <td><a href="/lp/finanzamt-innere-stadt">/lp/finanzamt-innere-stadt</a></td>
+                <td><a href="/lp/finanzamt-leopoldstadt">/lp/finanzamt-leopoldstadt</a></td>
+                <td><a href="/lp/finanzamt-landstrasse">/lp/finanzamt-landstrasse</a></td>
+                <td style="color: var(--evi-gray);">...</td>
+                <td><strong>9 Seiten</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Bezirksamt</strong></td>
+                <td><a href="/lp/bezirksamt-wien">/lp/bezirksamt-wien</a></td>
+                <td><a href="/lp/bezirksamt-innere-stadt">/lp/bezirksamt-innere-stadt</a></td>
+                <td><a href="/lp/bezirksamt-leopoldstadt">/lp/bezirksamt-leopoldstadt</a></td>
+                <td><a href="/lp/bezirksamt-landstrasse">/lp/bezirksamt-landstrasse</a></td>
+                <td style="color: var(--evi-gray);">...</td>
+                <td><strong>9 Seiten</strong></td>
+              </tr>
+              <tr style="opacity: 0.6;">
+                <td colspan="7" style="text-align: center; color: var(--evi-gray); font-style: italic;">
+                  ... 5 weitere Organisationen (Handelsgericht, Landesgericht, Magistrat, Gemeinde, ...)
+                </td>
+              </tr>
+              <tr style="background: var(--evi-light-gray); font-weight: bold;">
+                <td>GESAMT</td>
+                <td colspan="5"></td>
+                <td><strong>72 Seiten</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
+            <strong style="color: #e65100;">💡 Hinweis</strong>
+            <p style="font-size: 12px; margin: 5px 0 0 0; color: #e65100;">
+              Seiten mit 0 Ergebnissen werden basierend auf der Zero-Result Policy entweder als 404 markiert oder mit "Keine Ergebnisse" angezeigt.
+            </p>
+          </div>
+        </div>
+
+      <hr style="margin: 40px 0;">
+
+      <div style="text-align: center; padding: 30px 0;">
+        <a href="filter-builder.html" style="display: inline-block; background: var(--evi-red); color: #fff;
+           padding: 15px 30px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold;">
+          → Zum Filter Builder (Multi-Page Generator)
+        </a>
+      </div>
     </div>
   </div>
 </body>
