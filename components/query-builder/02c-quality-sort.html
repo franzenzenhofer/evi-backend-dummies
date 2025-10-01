@@ -1,0 +1,60 @@
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Datenqualität & Deduplizierung
+            </h3>
+
+            <div class="form-group">
+              <label>Qualitäts-Filter</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <label><input type="checkbox" checked> Duplikate entfernen</label>
+                <label><input type="checkbox"> Mindestens 5 Felder ausgefüllt</label>
+                <label><input type="checkbox"> Nur deutsche Sprache</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Sortierung & Limitierung
+            </h3>
+
+            <div class="form-group">
+              <label>Sortierung</label>
+              <select>
+                <option value="newest" selected>Neueste zuerst</option>
+                <option value="relevance">Relevanz (Volltext-Score)</option>
+                <option value="magnitude">Nach Größe/Betrag</option>
+                <option value="alphabetical">Alphabetisch</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Result Cap (Obergrenze)</label>
+              <input type="number" value="2000" min="1" max="10000">
+              <span class="inline-help">
+                Schützt vor über-breiten Queries. Max 2000 empfohlen für Performance.
+              </span>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Zero-Result Fallback
+              <span class="help-icon" title="Was passiert bei 0 Ergebnissen?">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Fallback-Strategie</label>
+              <select>
+                <option value="geo-up" selected>Geo erweitern (Stadt → Bezirk → Bundesland)</option>
+                <option value="time-expand">Zeitfenster erweitern</option>
+                <option value="both">Beides (erst Geo, dann Zeit)</option>
+                <option value="none">Keine Fallback (zeige 0 Ergebnisse)</option>
+              </select>
+              <span class="inline-help">
+                Bei 0 Ergebnissen automatisch auf Parent-Geo oder breiteres Zeitfenster switchen.
+                Banner "Ergebnisse erweitert" wird angezeigt.
+              </span>
+            </div>
+          </div>
+        </div>

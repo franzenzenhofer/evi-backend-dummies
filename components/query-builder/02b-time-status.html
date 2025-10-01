@@ -1,0 +1,69 @@
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Zeitraum
+              <span class="help-icon" title="Rolling windows oder feste Zeiträume">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Zeit-Filter</label>
+              <select>
+                <option value="start" selected>Von Anfang an (Standard)</option>
+                <option value="7">Letzte 7 Tage (rolling)</option>
+                <option value="30">Letzte 30 Tage (rolling)</option>
+                <option value="90">Letzte 90 Tage (rolling)</option>
+                <option value="custom">Fester Zeitraum...</option>
+              </select>
+              <span class="inline-help">
+                Rolling: Fenster verschiebt sich täglich. Fest: Start- und End-Datum fix.
+              </span>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Status</h3>
+
+            <div class="form-group">
+              <label>Status-Filter (Mehrfachauswahl)</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <label><input type="checkbox" checked> Offen</label>
+                <label><input type="checkbox" checked> Geschlossen</label>
+                <label><input type="checkbox"> Laufend</label>
+                <label><input type="checkbox"> Abgeschlossen</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Entity Facets
+              <span class="help-icon" title="Branche, Rechtsform, Größe">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Branche / NACE (optional)</label>
+              <input type="text" placeholder="z.B. Bau, Handel, Dienstleistungen">
+              <span class="inline-help">Komma-getrennt oder leer für alle Branchen</span>
+            </div>
+
+            <div class="form-group">
+              <label>Rechtsform (optional)</label>
+              <select multiple size="3">
+                <option>GmbH</option>
+                <option>AG</option>
+                <option>Einzelunternehmen</option>
+                <option>OG</option>
+                <option>KG</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Größenklasse (optional)</label>
+              <select>
+                <option value="">Alle</option>
+                <option>Kleinstunternehmen</option>
+                <option>Kleinunternehmen</option>
+                <option>Mittelunternehmen</option>
+                <option>Großunternehmen</option>
+              </select>
+            </div>
+          </div>
