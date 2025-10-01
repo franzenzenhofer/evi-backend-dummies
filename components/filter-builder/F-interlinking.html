@@ -1,0 +1,49 @@
+        <div class="section" id="section-F">
+          <h2>F. Interlinking & Navigation</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Automatische interne Verlinkung zwischen generierten Seiten
+          </p>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked>
+              Auto-Interlinking aktivieren
+            </label>
+            <span class="inline-help">
+              Erstellt automatisch Links zwischen verwandten Seiten (gleiche Org, andere Location; gleiche Location, andere Org)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Interlinking Strategie</label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox" checked>
+              Geo-Siblings (z.B. "Wien Energie Wien" → "Wien Energie Niederösterreich")
+            </label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox" checked>
+              Org-Siblings (z.B. "Wiener Stadtwerke Wien" → "ÖBB Wien")
+            </label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox">
+              Parent-Child (z.B. "Wien" → "Wien 1010")
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Breadcrumbs</label>
+            <select>
+              <option>Auto (Home → Index → Organization → Location)</option>
+              <option>Custom Template</option>
+              <option>Deaktiviert</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Related Pages Block</label>
+            <input type="text" placeholder="H2 Überschrift (z.B. 'Verwandte Seiten')" value="Verwandte Seiten">
+            <span class="inline-help">
+              Block mit max. 5 verwandten Seiten wird am Ende jeder generierten Seite eingefügt
+            </span>
+          </div>
+        </div>
