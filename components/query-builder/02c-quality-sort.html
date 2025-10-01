@@ -39,21 +39,19 @@
 
           <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
             <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
-              Zero-Result Fallback
+              Zero-Result Policy
               <span class="help-icon" title="Was passiert bei 0 Ergebnissen?">ℹ️</span>
             </h3>
 
             <div class="form-group">
-              <label>Fallback-Strategie</label>
+              <label>Bei 0 Ergebnissen</label>
               <select>
-                <option value="geo-up" selected>Geo erweitern (Stadt → Bezirk → Bundesland)</option>
-                <option value="time-expand">Zeitfenster erweitern</option>
-                <option value="both">Beides (erst Geo, dann Zeit)</option>
-                <option value="none">Keine Fallback (zeige 0 Ergebnisse)</option>
+                <option value="404" selected>HTTP 404 (nicht in Sitemap, nicht verlinkt)</option>
+                <option value="empty">Zeige leere Ergebnisseite (0 Ergebnisse angezeigt)</option>
               </select>
               <span class="inline-help">
-                Bei 0 Ergebnissen automatisch auf Parent-Geo oder breiteres Zeitfenster switchen.
-                Banner "Ergebnisse erweitert" wird angezeigt.
+                404: Seite wird nicht generiert.<br>
+                Leere Seite: Wird generiert mit "Keine Ergebnisse gefunden" Message.
               </span>
             </div>
           </div>
