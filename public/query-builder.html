@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Builder - Landing Page Generator - EVI.gv.at</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles-extended.css">
+  <style>
+    .help-icon { cursor: help; color: var(--evi-red); font-size: 14px; margin-left: 5px; }
+    .placeholder-btn { background: var(--evi-light-gray); border: 1px solid var(--evi-border);
+      padding: 5px 10px; font-size: 12px; border-radius: 3px; cursor: pointer; margin-left: 10px; }
+    .placeholder-btn:hover { background: var(--evi-border); }
+    .inline-help { font-size: 11px; color: var(--evi-gray); margin-top: 3px; display: block; }
+    .filter-chip { display: inline-block; background: var(--evi-red); color: #fff;
+      padding: 5px 10px; border-radius: 15px; margin: 2px; font-size: 12px; }
+    .qc-blocker { color: #d32f2f; font-weight: bold; }
+    .qc-warning { color: var(--evi-warning); }
+    .qc-pass { color: var(--evi-success); }
+    .main-content { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="../logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Query Builder - Landing Page Generator</h1>
+      <p style="font-size: 14px; color: var(--evi-gray); margin: 5px 0 0 0;">
+        Erstellen Sie SEO-optimierte Landing Pages mit leistungsstarken Suchfiltern
+      </p>
+    </div>
+
+    <div class="main-content">
+
+        <div class="section" id="section-01">
+          <h2>01. Basis</h2>
+
+          <div class="form-group">
+            <label>
+              Seitenname (intern)
+              <span class="help-icon" title="Nur für interne Verwaltung sichtbar">ℹ️</span>
+            </label>
+            <input type="text" value="Insolvenzen Wien" placeholder="z.B. Insolvenzen - Wien">
+            <span class="inline-help">Dieser Name erscheint nur im Backend, nicht auf der veröffentlichten Seite</span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              URL-Slug
+              <span class="help-icon" title="Automatische 301-Weiterleitung bei Änderung">ℹ️</span>
+            </label>
+            <input type="text" value="/lp/insolvenzen-wien" placeholder="/lp/...">
+            <span class="inline-help">
+              Bei Slug-Änderung wird automatisch eine 301-Weiterleitung erstellt. Validierung auf Eindeutigkeit.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Modus
+              <span class="help-icon" title="Live = immer aktuell, Snapshot = eingefroren">ℹ️</span>
+            </label>
+            <select>
+              <option value="live" selected>
+                Live (Seite zeigt immer aktuelle Daten, täglich um 03:00 Uhr aktualisiert)
+              </option>
+              <option value="snapshot">
+                Snapshot (Ergebnis-IDs zum Publish-Zeitpunkt eingefroren, keine Updates)
+              </option>
+            </select>
+            <span class="inline-help">
+              <strong>Live:</strong> Background Job aktualisiert JSON-LD itemCount täglich.
+              <strong>Snapshot:</strong> IDs werden gespeichert, Seite ändert sich nicht.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select>
+              <option value="draft">Entwurf</option>
+              <option value="review">Zur Prüfung</option>
+              <option value="published">Veröffentlicht</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Erstellt von</label>
+            <input type="text" value="Franz Enzenhofer" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>Version</label>
+            <input type="text" value="1" disabled>
+            <span class="inline-help">Versionshistorie mit Diff-Viewer und Rollback-Funktion verfügbar</span>
+          </div>
+        </div>
+
+        <div class="section" id="section-02">
+          <h2>02. Query Builder - Suchkonfiguration</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Definieren Sie die "Hintergrundssuche" für diese Landing Page.
+            Alle Besucher sehen Ergebnisse basierend auf diesen Filtern.
+          </p>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Index & Volltext</h3>
+
+            <div class="form-group">
+              <label>Index/Domain (Datenquelle)</label>
+              <select>
+                <option value="insolvenzen" selected>Insolvenzen</option>
+                <option value="jobs">Jobs/Stellenausschreibungen</option>
+                <option value="ausschreibungen">Ausschreibungen</option>
+                <option value="foerderungen">Förderungen</option>
+                <option value="bekanntmachungen">Amtliche Bekanntmachungen</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>
+                Volltext-Suche (optional)
+                <span class="help-icon" title="Sucht in allen Textfeldern">ℹ️</span>
+              </label>
+              <input type="text" placeholder='z.B. "Bau Handel" oder "Informatik"'>
+              <span class="inline-help">
+                Volltextsuche über Titel, Beschreibung, Inhalte. Leer lassen für alle Einträge.
+              </span>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Geografie
+              <span class="help-icon" title="Geografische Filter - kombinierbar">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Bundesland (Mehrfachauswahl)</label>
+              <select multiple size="5" style="height: auto;">
+                <option value="wien" selected>Wien</option>
+                <option value="noe">Niederösterreich</option>
+                <option value="ooe">Oberösterreich</option>
+                <option value="sbg">Salzburg</option>
+                <option value="tir">Tirol</option>
+                <option value="vbg">Vorarlberg</option>
+                <option value="ktn">Kärnten</option>
+                <option value="stmk">Steiermark</option>
+                <option value="bgld">Burgenland</option>
+              </select>
+              <span class="inline-help">
+                Strg/Cmd + Klick für Mehrfachauswahl. Leer = alle Bundesländer.
+              </span>
+            </div>
+
+            <div class="form-group">
+              <label>Bezirk (optional, abhängig von Bundesland)</label>
+              <input type="text" placeholder="z.B. Wien 1., Innsbruck-Stadt">
+            </div>
+
+            <div class="form-group">
+              <label>PLZ (optional)</label>
+              <input type="text" placeholder="z.B. 1010, 1020">
+            </div>
+
+            <div class="form-group">
+              <label>Gemeinde (optional)</label>
+              <input type="text" placeholder="z.B. Wien, Graz, Linz">
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Zeitraum
+              <span class="help-icon" title="Rolling windows oder feste Zeiträume">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Zeit-Filter</label>
+              <select>
+                <option value="start" selected>Von Anfang an (Standard)</option>
+                <option value="7">Letzte 7 Tage (rolling)</option>
+                <option value="30">Letzte 30 Tage (rolling)</option>
+                <option value="90">Letzte 90 Tage (rolling)</option>
+                <option value="custom">Fester Zeitraum...</option>
+              </select>
+              <span class="inline-help">
+                Rolling: Fenster verschiebt sich täglich. Fest: Start- und End-Datum fix.
+              </span>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">Status</h3>
+
+            <div class="form-group">
+              <label>Status-Filter (Mehrfachauswahl)</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <label><input type="checkbox" checked> Offen</label>
+                <label><input type="checkbox" checked> Geschlossen</label>
+                <label><input type="checkbox"> Laufend</label>
+                <label><input type="checkbox"> Abgeschlossen</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Entity Facets
+              <span class="help-icon" title="Branche, Rechtsform, Größe">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Branche / NACE (optional)</label>
+              <input type="text" placeholder="z.B. Bau, Handel, Dienstleistungen">
+              <span class="inline-help">Komma-getrennt oder leer für alle Branchen</span>
+            </div>
+
+            <div class="form-group">
+              <label>Rechtsform (optional)</label>
+              <select multiple size="3">
+                <option>GmbH</option>
+                <option>AG</option>
+                <option>Einzelunternehmen</option>
+                <option>OG</option>
+                <option>KG</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Größenklasse (optional)</label>
+              <select>
+                <option value="">Alle</option>
+                <option>Kleinstunternehmen</option>
+                <option>Kleinunternehmen</option>
+                <option>Mittelunternehmen</option>
+                <option>Großunternehmen</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Datenqualität & Deduplizierung
+            </h3>
+
+            <div class="form-group">
+              <label>Qualitäts-Filter</label>
+              <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+                <label><input type="checkbox" checked> Duplikate entfernen</label>
+                <label><input type="checkbox"> Mindestens 5 Felder ausgefüllt</label>
+                <label><input type="checkbox"> Nur deutsche Sprache</label>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Sortierung & Limitierung
+            </h3>
+
+            <div class="form-group">
+              <label>Sortierung</label>
+              <select>
+                <option value="newest" selected>Neueste zuerst</option>
+                <option value="relevance">Relevanz (Volltext-Score)</option>
+                <option value="magnitude">Nach Größe/Betrag</option>
+                <option value="alphabetical">Alphabetisch</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Result Cap (Obergrenze)</label>
+              <input type="number" value="2000" min="1" max="10000">
+              <span class="inline-help">
+                Schützt vor über-breiten Queries. Max 2000 empfohlen für Performance.
+              </span>
+            </div>
+          </div>
+
+          <div style="background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border);">
+            <h3 style="font-size: 14px; margin: 0 0 10px 0; color: var(--evi-black);">
+              Zero-Result Fallback
+              <span class="help-icon" title="Was passiert bei 0 Ergebnissen?">ℹ️</span>
+            </h3>
+
+            <div class="form-group">
+              <label>Fallback-Strategie</label>
+              <select>
+                <option value="geo-up" selected>Geo erweitern (Stadt → Bezirk → Bundesland)</option>
+                <option value="time-expand">Zeitfenster erweitern</option>
+                <option value="both">Beides (erst Geo, dann Zeit)</option>
+                <option value="none">Keine Fallback (zeige 0 Ergebnisse)</option>
+              </select>
+              <span class="inline-help">
+                Bei 0 Ergebnissen automatisch auf Parent-Geo oder breiteres Zeitfenster switchen.
+                Banner "Ergebnisse erweitert" wird angezeigt.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section" id="section-03">
+          <h2>03. Content</h2>
+
+          <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
+            <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 10px; font-size: 12px;">
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{query-term}')">
+                {query-term}
+              </code>
+              <span>→ "Insolvenzen"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{location-name}')">
+                {location-name}
+              </code>
+              <span>→ "Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number}')">
+                {results-number}
+              </code>
+              <span>→ "1.274"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number-rounded}')">
+                {results-number-rounded}
+              </code>
+              <span>→ "1,3 Tsd."</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{time-window}')">
+                {time-window}
+              </code>
+              <span>→ "letzte 90 Tage"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{publish-date}')">
+                {publish-date}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{last-updated}')">
+                {last-updated}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{first-result-date}')">
+                {first-result-date}
+              </code>
+              <span>→ "15.03.2024"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{latest-result-date}')">
+                {latest-result-date}
+              </code>
+              <span>→ "30.09.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{top-facet:branche}')">
+                {top-facet:branche}
+              </code>
+              <span>→ "Bau, Handel, Dienstleistungen"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{trend-delta}')">
+                {trend-delta}
+              </code>
+              <span>→ "+12% zum Vormonat" (nur mit Enrichment)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>H1 Überschrift</label>
+            <input type="text" value="Insolvenzen in {location-name} – {time-window}"
+                   placeholder="z.B. Jobs {org-name} {location-name}">
+            <span class="inline-help">
+              Server-seitig gerendert. Fehlende Werte werden ausgelassen.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser (Rich Text)</label>
+            <textarea rows="3">Aktuelle Übersicht zu {results-number} Unternehmensinsolvenzen in {location-name}. Alle Fälle aus {time-window}.</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Body VOR der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="Einleitungstext, Kontext, Hinweise..."></textarea>
+            <span class="inline-help">Optional: Module-Embeds möglich</span>
+          </div>
+
+          <div class="form-group">
+            <label>Listen-Layout</label>
+            <select>
+              <option value="list" selected>Liste (Standard)</option>
+              <option value="grid">Grid (Karten)</option>
+              <option value="map-list">Karte + Liste</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Ergebnisse pro Seite</label>
+            <input type="number" value="15" min="1" max="100">
+            <span class="inline-help">Standard: 15 (kann auch 20 sein, siehe Spec)</span>
+          </div>
+
+          <div class="form-group">
+            <label>Expose Filters (optional)</label>
+            <input type="text" placeholder="z.B. bezirk,branche"
+                   value="bezirk,branche">
+            <span class="inline-help">
+              Besucher-sichtbare Filter als Chips. Komma-getrennt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Body NACH der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="FAQ, Erklärungen, CTAs, weitere Informationen..."></textarea>
+            <span class="inline-help">Optional: FAQPage Schema, wenn strukturiert</span>
+          </div>
+        </div>
+
+        <div class="section" id="section-04">
+          <h2>04. SEO</h2>
+
+          <div class="form-group">
+            <label>
+              Meta Title
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 60 Zeichen empfohlen)</span>
+            </label>
+            <input type="text" value="Insolvenzen Wien – aktuelle Fälle"
+                   placeholder="z.B. {query-term} {location-name}">
+            <span class="inline-help">
+              Aktuell: <strong>35 Zeichen</strong> ✅ (Platzhalter unterstützt)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Meta Description
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 160 Zeichen empfohlen)</span>
+            </label>
+            <textarea rows="2">{results-number} Insolvenzen in {location-name}. Trends & Verteilung nach Bezirken.</textarea>
+            <span class="inline-help">
+              Aktuell: <strong>78 Zeichen</strong> ✅ (Platzhalter unterstützt)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Canonical</label>
+            <select>
+              <option value="self" selected>Self (diese Seite)</option>
+              <option value="custom">Custom URL...</option>
+              <option value="none">Keine</option>
+            </select>
+            <span class="inline-help">
+              Bei Pagination: Seite 2+ canonical → Seite 1
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Robots</label>
+            <div style="display: flex; gap: 15px;">
+              <label><input type="checkbox" checked> Index</label>
+              <label><input type="checkbox" checked> Follow</label>
+            </div>
+            <span class="inline-help">
+              ⚠️ QC warnt bei: noindex + Sitemap include (Mismatch)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Pagination Policy</label>
+            <select>
+              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
+              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>OpenGraph / Twitter</label>
+            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
+            <div style="margin-top: 10px;">
+              <label>
+                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
+              </label>
+              <label style="margin-left: 15px;">
+                <input type="radio" name="og-image" value="upload"> Upload Image...
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Schema.org</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+              <label><input type="checkbox" checked> ItemList (mit itemCount)</label>
+              <label><input type="checkbox" checked> BreadcrumbList</label>
+              <label><input type="checkbox"> FAQPage (bei FAQ im Body)</label>
+            </div>
+            <span class="inline-help">
+              ItemList: nur erste 10 Items; BreadcrumbList: Auto-generiert aus Slug
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Hreflang (Multi-Language)</label>
+            <select>
+              <option value="none" selected>Keine (nur de-AT)</option>
+              <option value="de-de">de-AT + de-DE</option>
+              <option value="multi">Mehrsprachig...</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Sitemap</label>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <label><input type="checkbox" checked> In Sitemap aufnehmen</label>
+              <label>
+                Priority:
+                <input type="number" step="0.1" value="0.6" min="0" max="1" style="width: 60px;">
+              </label>
+              <label>
+                Changefreq:
+                <select style="width: 100px;">
+                  <option>always</option>
+                  <option selected>daily</option>
+                  <option>weekly</option>
+                  <option>monthly</option>
+                </select>
+              </label>
+            </div>
+            <span class="inline-help">
+              Nur Seite 1 wird in Sitemap gelistet (bei Pagination)
+            </span>
+          </div>
+        </div>
+
+        <div class="section" id="section-05">
+          <h2>05. Enrichment (optional)</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Erweiterte Features zur Anreicherung der Landing Page mit Zusatzinformationen.
+          </p>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox">
+              Google Trends Widget aktivieren
+              <span class="help-icon" title="Zeigt Interest-over-time Chart">ℹ️</span>
+            </label>
+            <div style="margin-left: 25px; margin-top: 10px;">
+              <input type="text" placeholder="Query (z.B. Insolvenzen)" style="width: 200px; margin-right: 10px;">
+              <input type="text" placeholder="Geo (z.B. AT-W)" style="width: 100px; margin-right: 10px;">
+              <select style="width: 120px;">
+                <option>Last 90 days</option>
+                <option>Last 12 months</option>
+                <option>Last 5 years</option>
+              </select>
+            </div>
+            <span class="inline-help" style="margin-left: 25px;">
+              Rendert ein kleines Chart + "Interest over time" Copy-Block auf der Seite.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox">
+              Berechnete Statistiken aktivieren
+              <span class="help-icon" title="Aktiviert Zusatz-Platzhalter">ℹ️</span>
+            </label>
+            <span class="inline-help" style="margin-left: 25px;">
+              Berechnet: % MoM Delta, Top 3 Bezirke, Top 3 Branchen.
+              <br>
+              Aktiviert Platzhalter: <code>{trend-delta}</code>, <code>{top-facet:bezirk}</code>, etc.
+            </span>
+          </div>
+
+          <div style="background: var(--evi-light-gray); padding: 12px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 12px;">ℹ️ Hinweis:</strong>
+            <p style="font-size: 11px; margin: 5px 0 0 0;">
+              Enrichment-Daten werden bei Live-Modus täglich um 03:00 Uhr neu berechnet.
+              Bei Snapshot-Modus: Einmalig beim Publish.
+            </p>
+          </div>
+        </div>
+
+        <div class="section" id="section-06">
+          <h2>06. Quality Control & Publishing</h2>
+
+          <div style="background: #e8f5e9; border-left: 4px solid #388e3c; padding: 15px; margin: 15px 0;">
+            <strong style="color: #2e7d32;">✅ BEREIT ZUR VERÖFFENTLICHUNG</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #2e7d32;">
+              <li>Slug ist eindeutig (/lp/insolvenzen-wien)</li>
+              <li>H1 vorhanden (50 Zeichen)</li>
+              <li>Intro vorhanden (92 Zeichen)</li>
+              <li>1.274 Ergebnisse (über Minimum von 5)</li>
+              <li>Robots-Index + Sitemap: konsistent ✅</li>
+              <li>Canonical korrekt konfiguriert</li>
+            </ul>
+          </div>
+
+          <div style="background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
+            <strong style="color: #e65100;">⚠️ WARNUNGEN (nicht blockierend)</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #e65100;">
+              <li>Meta Description könnte detaillierter sein (&lt;100 Zeichen) → <a href="#section-04">Bearbeiten</a></li>
+              <li>OG Image: Auto-generiert (empfohlen: Custom Upload) → <a href="#section-04">Upload</a></li>
+            </ul>
+          </div>
+
+          <!-- Beispiel: Blocker (wird nur gezeigt wenn vorhanden) -->
+          <!-- <div style="background: #ffebee; border-left: 4px solid #d32f2f; padding: 15px; margin: 15px 0; display: none;">
+            <strong style="color: #c62828;">⛔ BLOCKER (Veröffentlichung gesperrt)</strong>
+            <ul style="margin: 10px 0 0 0; padding-left: 20px; font-size: 13px; color: #c62828;">
+              <li>Duplicate Slug: /lp/insolvenzen-wien existiert bereits → <a href="#section-01">Ändern</a></li>
+              <li>Zero results + kein Fallback konfiguriert → <a href="#section-02">Fallback aktivieren</a></li>
+              <li>H1 fehlt → <a href="#section-03">H1 eingeben</a></li>
+              <li>Canonical Konflikt: Custom URL existiert nicht → <a href="#section-04">Korrigieren</a></li>
+              <li>Robots noindex + Sitemap include (Mismatch) → <a href="#section-04">Konsistenz herstellen</a></li>
+            </ul>
+          </div> -->
+
+          <div class="form-group">
+            <label>Schedule Publishing (optional)</label>
+            <input type="datetime-local">
+            <span class="inline-help">
+              Leer lassen für sofortige Veröffentlichung. Zeit in CET.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Versionierung</label>
+            <div style="background: var(--evi-light-gray); padding: 10px; border-radius: 4px;">
+              <strong>Version 1</strong> - Erstellt von Franz Enzenhofer am 01.10.2025 10:30<br>
+              <small>
+                <a href="#" onclick="alert('Diff-Viewer öffnen')">📊 Änderungen ansehen</a> |
+                <a href="#" onclick="alert('Rollback zu Version...')">↩️ Rollback</a>
+              </small>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 12px; margin-top: 25px; flex-wrap: wrap;">
+            <button onclick="alert('Vorschau wird in neuem Tab geöffnet...')" style="flex: 1; min-width: 150px;">
+              🔍 Vorschau
+            </button>
+            <button class="secondary" onclick="alert('Entwurf gespeichert!')" style="flex: 1; min-width: 150px;">
+              💾 Entwurf speichern
+            </button>
+            <button class="secondary" onclick="alert('Zur Prüfung eingereicht!')" style="flex: 1; min-width: 150px;">
+              📋 Zur Prüfung
+            </button>
+            <button onclick="if(confirm('Seite jetzt veröffentlichen?')) alert('Seite wird veröffentlicht!')"
+                    style="flex: 1; min-width: 150px; background: var(--evi-success); border-color: var(--evi-success);">
+              🚀 Veröffentlichen
+            </button>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 20px 0; border-radius: 4px; border-left: 4px solid #1976d2;">
+            <strong style="font-size: 12px; color: #1565c0;">ℹ️ Nach Veröffentlichung:</strong>
+            <ul style="font-size: 11px; margin: 5px 0 0 0; padding-left: 20px; color: #1565c0;">
+              <li>Seite wird als Static HTML (SSR) + JSON-LD generiert</li>
+              <li>Cache Key: <code>lp:insolvenzen-wien:v1</code></li>
+              <li>Wird in Sitemap aufgenommen (Priority 0.6, changefreq daily)</li>
+              <li>Bei Live-Modus: Background Job um 03:00 Uhr aktiviert</li>
+              <li>GSC-Ping wird ausgelöst</li>
+            </ul>
+          </div>
+        </div>
+
+      <hr style="margin: 40px 0;">
+
+      <div style="text-align: center; padding: 30px 0;">
+        <a href="filter-builder.html" style="display: inline-block; background: var(--evi-red); color: #fff;
+           padding: 15px 30px; border-radius: 4px; text-decoration: none; font-size: 14px; font-weight: bold;">
+          → Zum Filter Builder (Multi-Page Generator)
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
