@@ -1,0 +1,61 @@
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+              <strong style="font-size: 13px;">Interlinking Block #1</strong>
+              <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕ Entfernen</button>
+            </div>
+
+            <div class="form-group">
+              <label>Überschrift für diesen Block</label>
+              <input type="text" value="EVI.gv.at Archiv" placeholder="z.B. Verwandte Seiten, Mehr zum Thema...">
+            </div>
+
+            <div class="form-group">
+              <label>Link-Typ</label>
+              <select onchange="this.nextElementSibling.style.display = this.value === 'random' ? 'none' : 'block'">
+                <option value="random" selected>5 komplett zufällige Links (index pages only)</option>
+                <option value="new">5 neueste Einträge</option>
+                <option value="sensemaking">5 thematisch ähnliche (Sensemaking)</option>
+                <option value="custom">Custom Query (Mini-Filter)</option>
+              </select>
+              <div style="display: none; margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray);">
+                <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+
+                <div style="margin-bottom: 10px;">
+                  <label style="font-size: 12px;">Datenquelle</label>
+                  <select style="font-size: 12px;">
+                    <option>Alle</option>
+                    <option>Insolvenzen</option>
+                    <option>Jobs</option>
+                    <option>Ausschreibungen</option>
+                  </select>
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                  <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                  <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                </div>
+
+                <div style="margin-bottom: 10px;">
+                  <label style="font-size: 12px;">Location (optional)</label>
+                  <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                </div>
+
+                <div>
+                  <label style="font-size: 12px;">Anzahl Links</label>
+                  <input type="number" value="5" min="1" max="20" style="width: 60px; font-size: 12px;">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Position</label>
+              <select>
+                <option>Im Hauptinhalt (nach Liste)</option>
+                <option>Sidebar (rechts)</option>
+                <option>Footer-Bereich</option>
+              </select>
+              <span class="inline-help">
+                Links werden als <code>&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> gerendert. Überschrift als <code>&lt;h3&gt;</code>.
+              </span>
+            </div>
+          </div>
