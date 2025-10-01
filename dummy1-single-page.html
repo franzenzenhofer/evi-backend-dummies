@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Generator - EVI.gv.at</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-extended.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Landing Page Generator - Einzelseite</h1>
+    </div>
+
+    <div class="layout">
+      <div class="main-content">
+        <div class="section">
+          <h2>01. Basis</h2>
+          <div class="form-group">
+            <label>Seitenname (intern)</label>
+            <input type="text" id="pageName" value="Insolvenzen Wien" placeholder="z.B. Insolvenzen - Wien">
+          </div>
+          <div class="form-group">
+            <label>URL-Slug</label>
+            <input type="text" id="slug" value="/lp/insolvenzen-wien" placeholder="/lp/...">
+          </div>
+          <div class="form-group">
+            <label>Modus</label>
+            <select id="mode">
+              <option value="live" selected>Live (immer aktuell)</option>
+              <option value="snapshot">Snapshot (IDs eingefroren)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>02. Query Builder</h2>
+          <div class="form-group">
+            <label>Index</label>
+            <select id="index">
+              <option value="insolvenzen" selected>Insolvenzen</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Bundesland</label>
+            <select id="bundesland">
+              <option value="wien" selected>Wien</option>
+              <option value="noe">Niederösterreich</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Zeitfenster</label>
+            <select id="timeWindow">
+              <option value="start" selected>Von Anfang an</option>
+              <option value="90">Letzte 90 Tage</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <div style="display: flex; gap: 10px;">
+              <label><input type="checkbox" checked> Aktiv</label>
+              <label><input type="checkbox" checked> Inaktiv</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>03. Content</h2>
+          <div class="form-group">
+            <label>H1 (Platzhalter erlaubt)</label>
+            <input type="text" id="h1" value="Insolvenzen in %location-name% – %time-window%">
+          </div>
+          <div class="form-group">
+            <label>Intro</label>
+            <textarea id="intro">Aktuelle Übersicht zu %results-number% Unternehmensinsolvenzen in %location-name%.</textarea>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>04. SEO</h2>
+          <div class="form-group">
+            <label>Meta Title</label>
+            <input type="text" id="metaTitle" value="Insolvenzen Wien – aktuelle Fälle">
+          </div>
+          <div class="form-group">
+            <label>Meta Description</label>
+            <textarea id="metaDesc">%results-number% Insolvenzen in %location-name%. Trends & Verteilung nach Bezirken.</textarea>
+          </div>
+          <div class="form-group">
+            <label>Canonical</label>
+            <select id="canonical">
+              <option value="self" selected>Self</option>
+              <option value="custom">Custom URL</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Listenelemente pro Seite</label>
+            <input type="number" id="itemsPerPage" value="15" min="1" max="100">
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>05. Qualitätskriterien</h2>
+          <div class="form-group">
+            <label>Mindestanzahl Ergebnisse</label>
+            <input type="number" id="minResults" value="5" min="1">
+          </div>
+          <div class="form-group">
+            <label>Fallback bei 0 Ergebnissen</label>
+            <select id="fallback">
+              <option value="geo-up" selected>Geo erweitern (Stadt → Bezirk → Bundesland)</option>
+              <option value="none">Keine Fallback</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button onclick="alert('Vorschau')">Vorschau</button>
+          <button onclick="alert('Entwurf gespeichert!')" class="secondary">Entwurf speichern</button>
+          <button onclick="alert('Veröffentlicht!')">Veröffentlichen</button>
+        </div>
+      </div>
+
+      <div class="preview-panel">
+        <h3>Live Vorschau</h3>
+        <div class="metric">
+          <span class="metric-label">Ergebnisse</span>
+          <span class="metric-value">1.274</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Status</span>
+          <span class="metric-value">✅ Bereit</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">QC</span>
+          <span class="metric-value">✅ Bestanden</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">URL</span>
+          <span class="metric-value" style="font-size: 12px;">/lp/insolvenzen-wien</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
