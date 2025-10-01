@@ -35,18 +35,18 @@ buildHTML('query-builder.html', [
   'query-builder/99-foot.html'
 ]);
 
-// Build filter-builder.html
+// Build filter-builder.html (cloned from query-builder structure)
 buildHTML('filter-builder.html', [
   'filter-builder/00-head.html',
-  'filter-builder/A-scope-templates.html',
-  'filter-builder/B-organizations.html',
-  'filter-builder/C-locations.html',
-  'filter-builder/C2-headline-intro.html',
-  'filter-builder/D-quality.html',
-  'filter-builder/D2-seo-templates.html',
-  'filter-builder/E-dry-run.html',
-  'filter-builder/F-interlinking.html',
-  'filter-builder/G-publishing.html',
+  'filter-builder/01-basics.html',
+  'filter-builder/02-organizations.html',
+  'filter-builder/03-locations.html',
+  'filter-builder/04-headline.html',
+  'filter-builder/05-content.html',
+  'filter-builder/05b-seo.html',
+  'filter-builder/05c-interlinking.html',
+  'filter-builder/06-qc-publish.html',
+  'filter-builder/07-matrix-preview.html',
   'filter-builder/99-foot.html'
 ]);
 
