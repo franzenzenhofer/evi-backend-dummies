@@ -3,31 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Filter Builder - Multi-Page Generator - EVI.gv.at</title>
+  <title>Multi-Page Builder - Bulk Generator - EVI.gv.at</title>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../styles-extended.css">
   <style>
     .help-icon { cursor: help; color: var(--evi-red); font-size: 14px; margin-left: 5px; }
+    .placeholder-btn { background: var(--evi-light-gray); border: 1px solid var(--evi-border);
+      padding: 5px 10px; font-size: 12px; border-radius: 3px; cursor: pointer; margin-left: 10px; }
+    .placeholder-btn:hover { background: var(--evi-border); }
     .inline-help { font-size: 11px; color: var(--evi-gray); margin-top: 3px; display: block; }
+    .filter-chip { display: inline-block; background: var(--evi-red); color: #fff;
+      padding: 5px 10px; border-radius: 15px; margin: 2px; font-size: 12px; }
+    .qc-blocker { color: #d32f2f; font-weight: bold; }
+    .qc-warning { color: var(--evi-warning); }
+    .qc-pass { color: var(--evi-success); }
     .main-content { max-width: 1200px; margin: 0 auto; padding: 20px; }
     .matrix-table { width: 100%; border-collapse: collapse; font-size: 11px; margin: 15px 0; }
     .matrix-table th { background: var(--evi-red); color: #fff; padding: 8px; text-align: left; }
     .matrix-table td { border: 1px solid var(--evi-border); padding: 6px; }
     .matrix-table tr:hover { background: var(--evi-light-gray); }
-    .org-checkbox-list { max-height: 300px; overflow-y: auto; border: 1px solid var(--evi-border);
-      padding: 10px; background: #fff; }
-    .org-checkbox-list label { display: block; padding: 5px 0; }
-    .location-tree { padding-left: 20px; }
-    .location-tree summary { cursor: pointer; padding: 5px 0; }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="header">
       <img src="../logo.svg" alt="EVI.gv.at Logo" class="logo">
-      <h1>Filter Builder - Multi-Page Generator</h1>
+      <h1>Multi-Page Builder - Bulk Landing Page Generator</h1>
       <p style="font-size: 14px; color: var(--evi-gray); margin: 5px 0 0 0;">
-        Bulk-Generierung von Landing Pages für Organization × Location Kombinationen
+        Erstellen Sie mehrere Landing Pages gleichzeitig: Organisationen × Locations
       </p>
     </div>
 
