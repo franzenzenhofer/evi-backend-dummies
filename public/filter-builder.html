@@ -44,8 +44,8 @@
               Kampagnenname (intern)
               <span class="help-icon" title="Name für diese Bulk-Generierung">ℹ️</span>
             </label>
-            <input type="text" value="Insolvenzen Multi-Locations" placeholder="z.B. Jobs Österreich-weit">
-            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren</span>
+            <input type="text" value="Stellenausschreibungen Bundesministerien" placeholder="z.B. Firmenbuch Neueintragungen AT-weit">
+            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren (z.B. Familie + Org-Typ)</span>
           </div>
 
           <div class="form-group">
@@ -53,9 +53,9 @@
               URL-Struktur Pattern
               <span class="help-icon" title="Template für alle generierten URLs">ℹ️</span>
             </label>
-            <input type="text" value="/lp/{org_slug}-{location_slug}" placeholder="/lp/{org_slug}-{location_slug}">
+            <input type="text" value="/lp/{familie_slug}-{org_slug}-{location_slug}" placeholder="/lp/{familie_slug}-{typ_slug}-{org_slug}-{location_slug}">
             <span class="inline-help">
-              Platzhalter: {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/polizei-wien
+              Platzhalter: {familie_slug}, {typ_slug}, {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/firmenbuch-neueintragung-wien
             </span>
           </div>
 
@@ -99,74 +99,387 @@
         </div>
 
         <div class="section" id="section-02">
-          <h2>02. Organisationen auswählen</h2>
+          <h2>02. Publikations-Familien (EVI.gv.at)</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Wählen Sie die Organisationen, für die Landing Pages generiert werden sollen.
+            Wählen Sie die EVI-Publikationsfamilien, für die Landing Pages generiert werden sollen.
           </p>
 
           <div class="form-group">
             <label>
-              <input type="checkbox" checked> Alle Organisationen
+              <input type="checkbox"> Alle Familien
             </label>
             <span class="inline-help">
-              Wenn aktiviert, werden alle verfügbaren Organisationen verwendet.
+              Wenn aktiviert, werden alle verfügbaren Publikationsfamilien verwendet.
             </span>
           </div>
 
-          <div class="form-group" style="opacity: 0.5; pointer-events: none;">
-            <label>Organisationen (Mehrfachauswahl)</label>
+          <div class="form-group">
+            <label>Publikations-Familien (Mehrfachauswahl)</label>
             <div style="border: 1px solid var(--evi-border); padding: 15px; background: #fff; max-height: 400px; overflow-y: auto;">
-              <label style="display: block; padding: 5px 0; font-weight: bold;">
-                <input type="checkbox"> Behörden
-              </label>
-              <div style="padding-left: 20px;">
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Polizei
-                </label>
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Finanzamt
-                </label>
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Bezirksamt
-                </label>
-              </div>
 
-              <label style="display: block; padding: 5px 0; font-weight: bold; margin-top: 10px;">
-                <input type="checkbox"> Gerichte
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox" checked> Firmenbuch & Unternehmensverlautbarungen
               </label>
-              <div style="padding-left: 20px;">
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Handelsgericht
-                </label>
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Landesgericht
-                </label>
-              </div>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Neueintragungen, Funktionen, Gesellschafter, Bilanzen, Verschmelzungen, Auflösungen
+              </span>
 
-              <label style="display: block; padding: 5px 0; font-weight: bold; margin-top: 10px;">
-                <input type="checkbox"> Öffentliche Stellen
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox" checked> Hauptversammlungen
               </label>
-              <div style="padding-left: 20px;">
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Magistrat
-                </label>
-                <label style="display: block; padding: 3px 0;">
-                  <input type="checkbox"> Gemeinde
-                </label>
-              </div>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Ordentliche & außerordentliche Hauptversammlungen (AG, SE)
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Anlegerinformationen & Kapitalmarkt
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Dividendenbekanntmachungen, Prospekte, Nachträge, KIDs-Änderungen
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Stellenausschreibungen
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Öffentlicher Bereich, Bund, Länder, Gemeinden, staatsnahe Unternehmen
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Gläubigeraufforderungen
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Liquidationen, Fristen, Anmeldungen
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Glücksspiel
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Spielkundmachungen, Auslosungen, Gewinnpläne
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Kassenwerte (BMF)
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Währungskurse, Neufestsetzungen
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Großverfahren (UVP/AVG)
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                Umweltverträglichkeitsprüfungen, Behördenverfahren auf Landesebene
+              </span>
+
+              <label style="display: block; padding: 5px 0;">
+                <input type="checkbox"> Findok-Feeds (optional)
+              </label>
+              <span style="display: block; font-size: 11px; color: var(--evi-gray); padding-left: 25px; margin-bottom: 8px;">
+                BMF Findok Konsolidate (Metakategorie)
+              </span>
             </div>
           </div>
 
           <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
-            <strong style="font-size: 12px;">Ausgewählt: 8 Organisationen</strong>
+            <strong style="font-size: 12px;">Ausgewählt: 2 Familien</strong>
+            <span style="font-size: 11px; display: block; margin-top: 3px; color: var(--evi-gray);">
+              Firmenbuch & Unternehmensverlautbarungen, Hauptversammlungen
+            </span>
           </div>
         </div>
 
         <div class="section" id="section-03">
-          <h2>03. Locations auswählen</h2>
+          <h2>03. Aussendungstypen</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Wählen Sie die geografischen Regionen, für die Landing Pages generiert werden sollen.
+            Aussendungstypen werden basierend auf den gewählten Familien angezeigt (dynamisch).
           </p>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox"> Alle Typen (für gewählte Familien)
+            </label>
+          </div>
+
+          <!-- Firmenbuch Types -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px; color: var(--evi-black);">
+              Firmenbuch & Unternehmensverlautbarungen
+            </strong>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox" checked> Neueintragung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox" checked> Funktion eingetragen
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Funktion geändert
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Funktion gelöscht
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Gesellschafter eingetragen
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Gesellschafter geändert
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Gesellschafter gelöscht
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Kapitaländerung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Jahresabschluss eingereicht
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Konzernabschluss eingereicht
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Verschmelzung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Spaltung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Umwandlung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Namensänderung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Sitzveränderung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Geschäftszweigänderung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Beschluss
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Urkunde
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Auflösung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Löschung
+            </label>
+          </div>
+
+          <!-- Hauptversammlung Types -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px; color: var(--evi-black);">
+              Hauptversammlungen
+            </strong>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox" checked> Ordentliche Hauptversammlung
+            </label>
+            <label style="display: block; padding: 3px 0; font-size: 12px;">
+              <input type="checkbox"> Außerordentliche Hauptversammlung
+            </label>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 12px;">Ausgewählt: 3 Typen</strong>
+          </div>
+        </div>
+
+        <div class="section" id="section-04">
+          <h2>04. Organisationen ("Verantwortlich für den Inhalt")</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Wählen Sie die Veröffentlicher-Organisationen. Dies ist das Feld "Verantwortlich für den Inhalt" auf EVI.gv.at.
+          </p>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox"> Alle Organisationen
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Organisationen (nach Typ gruppiert)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; background: #fff; max-height: 500px; overflow-y: auto;">
+
+              <!-- Bund/Ministerien -->
+              <details open>
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Bund / Ministerien
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Bundesministerium für Finanzen (BMF)
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Bundesministerium für Justiz
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Bundesministerium für Inneres
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Bundesministerium für Landesverteidigung
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Bundesministerium für Arbeit und Wirtschaft
+                  </label>
+                </div>
+              </details>
+
+              <!-- Bund/Behörden -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Bund / Behörden & Aufsicht
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Finanzmarktaufsicht (FMA)
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Österreichische Nationalbank (ÖNB)
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Statistik Austria
+                  </label>
+                </div>
+              </details>
+
+              <!-- Landesregierungen -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Landesregierungen & Behörden
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Wien
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Niederösterreich
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Oberösterreich
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Steiermark
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Tirol
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Vorarlberg
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Salzburg
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Kärnten
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Land Burgenland
+                  </label>
+                </div>
+              </details>
+
+              <!-- Gemeinden -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Gemeinden / Städte / Magistrate
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Magistrat Wien
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Magistrat Graz
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Magistrat Linz
+                  </label>
+                </div>
+              </details>
+
+              <!-- AG Unternehmen -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Unternehmen (AG)
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Österreichische Post AG
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> OMV AG
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Raiffeisen Bank International AG
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> ERSTE Group Bank AG
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Verbund AG
+                  </label>
+                </div>
+              </details>
+
+              <!-- GmbH Unternehmen -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Unternehmen (GmbH)
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Österreichische Lotterien GmbH
+                  </label>
+                </div>
+              </details>
+
+              <!-- Universitäten -->
+              <details style="margin-top: 10px;">
+                <summary style="cursor: pointer; font-weight: bold; padding: 5px 0; margin-bottom: 5px;">
+                  Universitäten & Fachhochschulen
+                </summary>
+                <div style="padding-left: 20px;">
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Universität Wien
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Technische Universität Wien
+                  </label>
+                  <label style="display: block; padding: 3px 0; font-size: 12px;">
+                    <input type="checkbox"> Universität Graz
+                  </label>
+                </div>
+              </details>
+
+            </div>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 12px;">Ausgewählt: 0 Organisationen</strong>
+          </div>
+        </div>
+
+        <div class="section" id="section-05">
+          <h2>05. Locations (Österreichische Verwaltungsgliederung)</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Wählen Sie Bundesländer, Bezirke, Gemeinden. Location-Ableitung erfolgt familienspezifisch.
+          </p>
+
+          <div style="background: #fff3e0; padding: 12px; margin: 0 0 15px 0; border-radius: 4px; border-left: 4px solid #f57c00;">
+            <strong style="font-size: 11px; color: #e65100;">💡 Location-Mapping pro Familie:</strong>
+            <ul style="font-size: 10px; margin: 5px 0 0 0; padding-left: 20px; color: #e65100;">
+              <li>Firmenbuch → Sitz der Firma</li>
+              <li>Hauptversammlung → Veranstaltungsort</li>
+              <li>Anlegerinfo → Sitz der Gesellschaft</li>
+              <li>Stellen → Dienstort</li>
+              <li>Gläubiger → Sitz der Firma/Adresse</li>
+              <li>Glücksspiel → Bundesweit (default)</li>
+              <li>Kassenwerte → Österreich</li>
+              <li>Großverfahren → Bundesland + Gemeinden</li>
+            </ul>
+          </div>
 
           <div class="form-group">
             <label>
@@ -182,20 +495,77 @@
             <div style="border: 1px solid var(--evi-border); padding: 15px; background: #fff; max-height: 400px; overflow-y: auto;">
               <details open>
                 <summary style="cursor: pointer; font-weight: bold; padding: 5px 0;">
-                  <input type="checkbox" checked> Wien (9 Bezirke)
+                  <input type="checkbox" checked> Wien (23 Bezirke)
                 </summary>
-                <div style="padding-left: 20px;">
-                  <label style="display: block; padding: 3px 0;">
-                    <input type="checkbox" checked> 1. Bezirk - Innere Stadt
+                <div style="padding-left: 20px; font-size: 11px;">
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox" checked> 1. Innere Stadt
                   </label>
-                  <label style="display: block; padding: 3px 0;">
-                    <input type="checkbox" checked> 2. Bezirk - Leopoldstadt
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox" checked> 2. Leopoldstadt
                   </label>
-                  <label style="display: block; padding: 3px 0;">
-                    <input type="checkbox" checked> 3. Bezirk - Landstraße
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox" checked> 3. Landstraße
                   </label>
-                  <label style="display: block; padding: 3px 0; color: var(--evi-gray);">
-                    ... 6 weitere Bezirke
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 4. Wieden
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 5. Margareten
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 6. Mariahilf
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 7. Neubau
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 8. Josefstadt
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 9. Alsergrund
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 10. Favoriten
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 11. Simmering
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 12. Meidling
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 13. Hietzing
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 14. Penzing
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 15. Rudolfsheim-Fünfhaus
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 16. Ottakring
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 17. Hernals
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 18. Währing
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 19. Döbling
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 20. Brigittenau
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 21. Floridsdorf
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 22. Donaustadt
+                  </label>
+                  <label style="display: block; padding: 2px 0;">
+                    <input type="checkbox"> 23. Liesing
                   </label>
                 </div>
               </details>
@@ -226,8 +596,160 @@
           </div>
 
           <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px;">
-            <strong style="font-size: 12px;">Ausgewählt: 9 Locations (Wien + Bezirke)</strong>
+            <strong style="font-size: 12px;">Ausgewählt: 4 Locations</strong>
+            <span style="font-size: 11px; display: block; margin-top: 3px; color: var(--evi-gray);">
+              Wien + 3 Bezirke (1., 2., 3.)
+            </span>
           </div>
+        </div>
+
+        <div class="section" id="section-06">
+          <h2>06. Familien-Spezifische Filter</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Zusätzliche Filter basierend auf den gewählten Familien (dynamisch).
+          </p>
+
+          <!-- Firmenbuch Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px;">Firmenbuch</strong>
+
+            <div class="form-group">
+              <label>Rechtsform (Mehrfachauswahl)</label>
+              <select multiple size="5" style="height: auto; font-size: 12px;">
+                <option>GmbH</option>
+                <option>AG</option>
+                <option>OG</option>
+                <option>KG</option>
+                <option>Einzelunternehmen</option>
+                <option>FlexCo</option>
+                <option>SE (Societas Europaea)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Ereignis-Stichtag (für JAb/Konzernabschluss)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Hauptversammlung Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px;">Hauptversammlung</strong>
+
+            <div class="form-group">
+              <label>Termin (Datum der HV)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Anlegerinfo Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; opacity: 0.5;">
+            <strong style="display: block; margin-bottom: 10px;">Anlegerinformationen & Kapitalmarkt</strong>
+
+            <div class="form-group">
+              <label>ISIN (komma-getrennt oder Mehrfacheingabe)</label>
+              <input type="text" placeholder="AT0000937503, AT0000A1QA38" style="font-size: 12px;">
+            </div>
+
+            <div class="form-group">
+              <label>Zahltag (Dividende)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+
+            <div class="form-group">
+              <label>Ex-Tag</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Stellen Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; opacity: 0.5;">
+            <strong style="display: block; margin-bottom: 10px;">Stellenausschreibungen</strong>
+
+            <div class="form-group">
+              <label>Dienststelle-Kategorie</label>
+              <select style="font-size: 12px;">
+                <option>Alle</option>
+                <option>Bund</option>
+                <option>Land</option>
+                <option>Gemeinde</option>
+                <option>Staatsnah (AG/GmbH)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Hierarchie</label>
+              <select style="font-size: 12px;">
+                <option>Alle</option>
+                <option>Leitung / Vorstand / Geschäftsführung</option>
+                <option>Justiz / Richter</option>
+                <option>Sonstige</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Bewerbungsfrist (bis)</label>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section" id="section-07">
+          <h2>07. Sortierung & Qualität</h2>
+
+          <div class="form-group">
+            <label>Sortierung (typ-sensitiv)</label>
+            <select>
+              <option value="publish_date_desc" selected>Neueste zuerst (Publish Date desc)</option>
+              <option value="bewerbungsfrist_asc">Bewerbungsfrist aufsteigend (Stellen)</option>
+              <option value="termin_asc">Termin aufsteigend (HV)</option>
+              <option value="zahltag_asc">Zahltag aufsteigend (Anlegerinfo)</option>
+              <option value="relevance">Relevanz (Volltext-Score)</option>
+              <option value="alphabetical">Alphabetisch (Titel)</option>
+            </select>
+            <span class="inline-help">
+              Standard: Neueste zuerst. Für Stellen/HV: baldige Fristen/Termine bevorzugt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Qualitäts-Filter</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+              <label><input type="checkbox" checked> Duplikate entfernen</label>
+              <label><input type="checkbox"> Mindestens 5 Felder ausgefüllt</label>
+              <label><input type="checkbox"> Nur deutsche Sprache</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Result Cap (Obergrenze)</label>
+            <input type="number" value="2000" min="1" max="10000">
+            <span class="inline-help">
+              Schützt vor über-breiten Queries. Max 2000 empfohlen für Performance.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Zero-Result Policy</label>
+            <select>
+              <option value="404" selected>HTTP 404 (nicht in Sitemap, nicht verlinkt)</option>
+              <option value="empty">Zeige leere Ergebnisseite (0 Ergebnisse angezeigt)</option>
+              <option value="relax">Automatisch Filter lockern (Relax-Order: Gemeinde→Bezirk→Bundesland→AT)</option>
+            </select>
+            <span class="inline-help">
+              404: Seite wird nicht generiert. Leer: "Keine Ergebnisse". Relax: Stufenweise Filter erweitern.
+            </span>
+          </div>
+
         </div>
 
         <div class="section" id="section-04">
@@ -706,6 +1228,78 @@
         </div>
         <!-- End of section-05 -->
 
+        <div class="section" id="section-12">
+          <h2>12. Vorschau: Generierte Seiten Matrix (EVI-Native)</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Matrix zeigt Familien × Typen × Organisationen × Locations Kombinationen.
+          </p>
+
+          <div style="background: #e3f2fd; padding: 15px; margin: 15px 0; border-radius: 4px;">
+            <strong style="font-size: 14px;">📊 Geschätzt: ~48 Seiten werden generiert</strong><br>
+            <span style="font-size: 12px; color: var(--evi-gray);">
+              2 Familien × 3 Typen × 4 Locations = 24 Basis-Seiten<br>
+              + Hauptversammlung × 2 Typen × 4 Locations = 8 Seiten<br>
+              + Firmenbuch Neueintragung × Wien 23 Bezirke = 23 Seiten (optional)
+            </span>
+          </div>
+
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Familie / Typ</th>
+                <th>Wien</th>
+                <th>1. Innere Stadt</th>
+                <th>2. Leopoldstadt</th>
+                <th>3. Landstraße</th>
+                <th>Gesamt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Firmenbuch / Neueintragung</strong></td>
+                <td><a href="/lp/firmenbuch-neueintragung-wien">/lp/firmenbuch-neueintragung-wien</a></td>
+                <td><a href="/lp/firmenbuch-neueintragung-innere-stadt">/lp/firmenbuch-neueintragung-innere-stadt</a></td>
+                <td><a href="/lp/firmenbuch-neueintragung-leopoldstadt">/lp/firmenbuch-neueintragung-leopoldstadt</a></td>
+                <td><a href="/lp/firmenbuch-neueintragung-landstrasse">/lp/firmenbuch-neueintragung-landstrasse</a></td>
+                <td><strong>4 Seiten</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Firmenbuch / Funktion eingetragen</strong></td>
+                <td><a href="/lp/firmenbuch-funktion-wien">/lp/firmenbuch-funktion-wien</a></td>
+                <td><a href="/lp/firmenbuch-funktion-innere-stadt">/lp/firmenbuch-funktion-innere-stadt</a></td>
+                <td><a href="/lp/firmenbuch-funktion-leopoldstadt">/lp/firmenbuch-funktion-leopoldstadt</a></td>
+                <td><a href="/lp/firmenbuch-funktion-landstrasse">/lp/firmenbuch-funktion-landstrasse</a></td>
+                <td><strong>4 Seiten</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Hauptversammlung / Ordentlich</strong></td>
+                <td><a href="/lp/hv-ordentlich-wien">/lp/hv-ordentlich-wien</a></td>
+                <td><a href="/lp/hv-ordentlich-innere-stadt">/lp/hv-ordentlich-innere-stadt</a></td>
+                <td><a href="/lp/hv-ordentlich-leopoldstadt">/lp/hv-ordentlich-leopoldstadt</a></td>
+                <td><a href="/lp/hv-ordentlich-landstrasse">/lp/hv-ordentlich-landstrasse</a></td>
+                <td><strong>4 Seiten</strong></td>
+              </tr>
+              <tr style="opacity: 0.6;">
+                <td colspan="6" style="text-align: center; color: var(--evi-gray); font-style: italic;">
+                  ... weitere Typ-Kombinationen basierend auf Auswahl
+                </td>
+              </tr>
+              <tr style="background: var(--evi-light-gray); font-weight: bold;">
+                <td>GESAMT (Beispiel)</td>
+                <td colspan="4"></td>
+                <td><strong>~48 Seiten</strong></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
+            <strong style="color: #e65100;">💡 Hinweis</strong>
+            <p style="font-size: 12px; margin: 5px 0 0 0; color: #e65100;">
+              Seiten mit 0 Ergebnissen werden basierend auf der Zero-Result Policy entweder als 404 markiert oder mit "Keine Ergebnisse" angezeigt.
+            </p>
+          </div>
+        </div>
+
         <div class="section" id="section-06">
           <h2>06. Quality Control & Publishing</h2>
 
@@ -785,80 +1379,6 @@
               <li>Bei Live-Modus: Background Job um 03:00 Uhr aktiviert</li>
               <li>GSC-Ping wird ausgelöst</li>
             </ul>
-          </div>
-        </div>
-
-        <div class="section" id="section-07">
-          <h2>07. Vorschau: Generierte Seiten Matrix</h2>
-          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Diese Matrix zeigt alle Seiten, die durch die Kombination von Organisationen × Locations generiert werden.
-          </p>
-
-          <div style="background: #e3f2fd; padding: 15px; margin: 15px 0; border-radius: 4px;">
-            <strong style="font-size: 14px;">📊 Gesamt: 72 Seiten werden generiert</strong><br>
-            <span style="font-size: 12px; color: var(--evi-gray);">
-              8 Organisationen × 9 Locations = 72 Landing Pages
-            </span>
-          </div>
-
-          <table class="matrix-table">
-            <thead>
-              <tr>
-                <th>Organisation</th>
-                <th>Wien</th>
-                <th>1. Bezirk</th>
-                <th>2. Bezirk</th>
-                <th>3. Bezirk</th>
-                <th>...</th>
-                <th>Gesamt</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Polizei</strong></td>
-                <td><a href="/lp/polizei-wien">/lp/polizei-wien</a></td>
-                <td><a href="/lp/polizei-innere-stadt">/lp/polizei-innere-stadt</a></td>
-                <td><a href="/lp/polizei-leopoldstadt">/lp/polizei-leopoldstadt</a></td>
-                <td><a href="/lp/polizei-landstrasse">/lp/polizei-landstrasse</a></td>
-                <td style="color: var(--evi-gray);">...</td>
-                <td><strong>9 Seiten</strong></td>
-              </tr>
-              <tr>
-                <td><strong>Finanzamt</strong></td>
-                <td><a href="/lp/finanzamt-wien">/lp/finanzamt-wien</a></td>
-                <td><a href="/lp/finanzamt-innere-stadt">/lp/finanzamt-innere-stadt</a></td>
-                <td><a href="/lp/finanzamt-leopoldstadt">/lp/finanzamt-leopoldstadt</a></td>
-                <td><a href="/lp/finanzamt-landstrasse">/lp/finanzamt-landstrasse</a></td>
-                <td style="color: var(--evi-gray);">...</td>
-                <td><strong>9 Seiten</strong></td>
-              </tr>
-              <tr>
-                <td><strong>Bezirksamt</strong></td>
-                <td><a href="/lp/bezirksamt-wien">/lp/bezirksamt-wien</a></td>
-                <td><a href="/lp/bezirksamt-innere-stadt">/lp/bezirksamt-innere-stadt</a></td>
-                <td><a href="/lp/bezirksamt-leopoldstadt">/lp/bezirksamt-leopoldstadt</a></td>
-                <td><a href="/lp/bezirksamt-landstrasse">/lp/bezirksamt-landstrasse</a></td>
-                <td style="color: var(--evi-gray);">...</td>
-                <td><strong>9 Seiten</strong></td>
-              </tr>
-              <tr style="opacity: 0.6;">
-                <td colspan="7" style="text-align: center; color: var(--evi-gray); font-style: italic;">
-                  ... 5 weitere Organisationen (Handelsgericht, Landesgericht, Magistrat, Gemeinde, ...)
-                </td>
-              </tr>
-              <tr style="background: var(--evi-light-gray); font-weight: bold;">
-                <td>GESAMT</td>
-                <td colspan="5"></td>
-                <td><strong>72 Seiten</strong></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div style="background: #fff3e0; border-left: 4px solid #f57c00; padding: 15px; margin: 15px 0;">
-            <strong style="color: #e65100;">💡 Hinweis</strong>
-            <p style="font-size: 12px; margin: 5px 0 0 0; color: #e65100;">
-              Seiten mit 0 Ergebnissen werden basierend auf der Zero-Result Policy entweder als 404 markiert oder mit "Keine Ergebnisse" angezeigt.
-            </p>
           </div>
         </div>
 
