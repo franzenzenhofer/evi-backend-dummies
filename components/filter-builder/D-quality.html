@@ -1,0 +1,61 @@
+        <div class="section" id="section-D">
+          <h2>D. Quality Criteria & Policy</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Minimum-Standards für generierte Seiten definieren
+          </p>
+
+          <div class="form-group">
+            <label>Minimum Ergebnisse pro Seite</label>
+            <input type="number" value="5" style="width: 100px;">
+            <span class="inline-help">
+              Seiten mit weniger Ergebnissen werden NICHT generiert oder mit noindex versehen
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Zero-Result Policy</label>
+            <select>
+              <option>Seite nicht generieren (404)</option>
+              <option>Seite mit noindex + "Keine Ergebnisse" Message</option>
+              <option>Geo-Up Fallback (z.B. Bezirk → Bundesland)</option>
+              <option>Custom Fallback Query</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Data Quality Filters</label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox" checked>
+              Duplikate entfernen (fuzzy matching 85%)
+            </label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox">
+              Min. 3 ausgefüllte Felder pro Ergebnis
+            </label>
+            <label style="margin-left: 20px;">
+              <input type="checkbox">
+              Nur Ergebnisse mit deutscher Sprache
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Refresh Policy</label>
+            <select>
+              <option>Live-Modus (täglich 03:00 Uhr Update)</option>
+              <option>Snapshot (einmalig bei Generierung)</option>
+              <option>Wöchentlich (Montag 03:00 Uhr)</option>
+              <option>Monatlich (1. des Monats)</option>
+            </select>
+            <span class="inline-help">
+              Bei Live-Modus: JSON-LD itemCount + Ergebniszahl wird täglich aktualisiert
+            </span>
+          </div>
+
+          <div style="background: #fff3e0; padding: 12px; margin: 15px 0; border-radius: 4px; border-left: 4px solid #f57c00;">
+            <strong style="font-size: 12px; color: #e65100;">⚠️ Hinweis:</strong>
+            <p style="font-size: 11px; margin: 5px 0 0 0; color: #e65100;">
+              Seiten unter Minimum werden automatisch auf noindex gesetzt.
+              Überwachen Sie die "Zero Results Report" regelmäßig!
+            </p>
+          </div>
+        </div>
