@@ -5,16 +5,29 @@
           </p>
 
           <div class="form-group">
-            <label>Datenquelle wählen</label>
-            <select>
-              <option>Insolvenzen (insolvenzen.evi.gv.at)</option>
-              <option>Jobs (jobs.evi.gv.at)</option>
-              <option>Ausschreibungen (ausschreibungen.evi.gv.at)</option>
-              <option>Förderungen (foerderungen.evi.gv.at)</option>
-              <option>Immobilien (immobilien.evi.gv.at)</option>
-            </select>
+            <label>Datenquellen (Mehrfachauswahl)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 10px; background: #fff;">
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Alle Datenquellen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox" checked> Insolvenzen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Jobs/Stellenausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Ausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Förderungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Immobilien
+              </label>
+            </div>
             <span class="inline-help">
-              Für Bulk-Generierung: Eine Datenquelle pro Batch. Mehrere Quellen = separate Batches.
+              Mehrfachauswahl erlaubt. Für jede Datenquelle werden separate Seiten generiert.
             </span>
           </div>
 
@@ -25,7 +38,7 @@
               <option>Custom Template (Upload HTML)</option>
             </select>
             <span class="inline-help">
-              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, etc.
+              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, {separator}, {results-number}, etc.
             </span>
           </div>
 

@@ -40,16 +40,29 @@
           </p>
 
           <div class="form-group">
-            <label>Datenquelle wählen</label>
-            <select>
-              <option>Insolvenzen (insolvenzen.evi.gv.at)</option>
-              <option>Jobs (jobs.evi.gv.at)</option>
-              <option>Ausschreibungen (ausschreibungen.evi.gv.at)</option>
-              <option>Förderungen (foerderungen.evi.gv.at)</option>
-              <option>Immobilien (immobilien.evi.gv.at)</option>
-            </select>
+            <label>Datenquellen (Mehrfachauswahl)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 10px; background: #fff;">
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Alle Datenquellen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox" checked> Insolvenzen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Jobs/Stellenausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Ausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Förderungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Immobilien
+              </label>
+            </div>
             <span class="inline-help">
-              Für Bulk-Generierung: Eine Datenquelle pro Batch. Mehrere Quellen = separate Batches.
+              Mehrfachauswahl erlaubt. Für jede Datenquelle werden separate Seiten generiert.
             </span>
           </div>
 
@@ -60,7 +73,7 @@
               <option>Custom Template (Upload HTML)</option>
             </select>
             <span class="inline-help">
-              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, etc.
+              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, {separator}, {results-number}, etc.
             </span>
           </div>
 
@@ -225,6 +238,74 @@
           </div>
         </div>
 
+        <div class="section" id="section-C2">
+          <h2>C2. Headline & Intro Templates</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            H1 und Intro-Text werden für jede generierte Seite aus diesen Templates erstellt.
+          </p>
+
+          <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
+            <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 10px; font-size: 12px;">
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{org-name}')">
+                {org-name}
+              </code>
+              <span>→ "Wiener Stadtwerke GmbH"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{org-short}')">
+                {org-short}
+              </code>
+              <span>→ "Stadtwerke Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{location-name}')">
+                {location-name}
+              </code>
+              <span>→ "Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number}')">
+                {results-number}
+              </code>
+              <span>→ "1.274"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{brand}')">
+                {brand}
+              </code>
+              <span>→ "EVI.gv.at"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{separator}')">
+                {separator}
+              </code>
+              <span>→ " - " (Trennzeichen)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>H1 Template</label>
+            <input type="text" value="Insolvenzen {org-name} {separator} {location-name}"
+                   placeholder="z.B. Jobs {org-name} {location-name}">
+            <span class="inline-help">
+              Wird für jede generierte Seite mit den entsprechenden Werten gefüllt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser Template (Rich Text)</label>
+            <textarea rows="3">Aktuelle Übersicht zu Insolvenzen bei {org-name} in {location-name}. Insgesamt {results-number} Fälle.</textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+            <span class="inline-help">
+              Intro-Text erscheint vor der Ergebnisliste auf jeder generierten Seite.
+            </span>
+          </div>
+        </div>
+
         <div class="section" id="section-D">
           <h2>D. Quality Criteria & Policy</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
@@ -284,6 +365,122 @@
               Seiten unter Minimum werden automatisch auf noindex gesetzt.
               Überwachen Sie die "Zero Results Report" regelmäßig!
             </p>
+          </div>
+        </div>
+
+        <div class="section" id="section-D2">
+          <h2>D2. SEO Templates</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            SEO-Einstellungen für alle generierten Seiten. Platzhalter werden automatisch ersetzt.
+          </p>
+
+          <div class="form-group">
+            <label>
+              Meta Title Template {separator} {brand}
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 60 Zeichen empfohlen)</span>
+            </label>
+            <input type="text" value="Insolvenzen {org-short} {separator} {location-name} {separator} {brand}"
+                   placeholder="z.B. Jobs {org-short} {separator} {location-name} {separator} {brand}">
+            <span class="inline-help">
+              Aktuell: <strong>~55 Zeichen</strong> ✅ (Platzhalter unterstützt). {separator} = " - "
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Meta Description Template
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 160 Zeichen empfohlen)</span>
+            </label>
+            <textarea rows="2">{results-number} Insolvenzen bei {org-name} in {location-name}. Aktuelle Übersicht & Details.</textarea>
+            <span class="inline-help">
+              Aktuell: <strong>~75 Zeichen</strong> ✅ (Platzhalter unterstützt)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Canonical</label>
+            <select>
+              <option value="self" selected>Self (jede Seite)</option>
+              <option value="parent">Parent Page (Aggregation)</option>
+              <option value="none">Keine</option>
+            </select>
+            <span class="inline-help">
+              Bei Pagination: Seite 2+ canonical → Seite 1
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Robots</label>
+            <div style="display: flex; gap: 15px;">
+              <label><input type="checkbox" checked> Index</label>
+            </div>
+            <span class="inline-help">
+              Seiten unterhalb des Qualitätsschwellenwerts werden automatisch auf noindex gesetzt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Sitemap</label>
+            <label><input type="checkbox" checked> In Sitemap aufnehmen (nur Seiten ≥ Qualitätsschwellenwert)</label>
+          </div>
+
+          <div class="form-group">
+            <label>Pagination Policy</label>
+            <select>
+              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
+              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
+              <option value="all">Alle Ergebnisse auf einer Seite anzeigen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>OpenGraph</label>
+            <input type="text" placeholder="OG Title Template (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description Template (optional, sonst Meta Description)"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>OG Image</label>
+            <div>
+              <label>
+                <input type="radio" name="og-image-template" value="auto" checked> Auto-generieren (Title + Org Logo)
+              </label>
+            </div>
+            <div style="margin-top: 10px;">
+              <label>
+                <input type="radio" name="og-image-template" value="upload"> Upload Template-Bild
+              </label>
+              <input type="file" accept="image/*" style="margin-left: 10px;">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>FAQ Editor (Schema.org)</label>
+            <span class="inline-help">
+              Erstellen Sie Template-FAQs für alle Seiten. Schema.org FAQPage wird automatisch generiert.
+            </span>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin-top: 10px; background: #fff;">
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 1:</label>
+                <input type="text" placeholder="z.B. Was sind Insolvenzen bei {org-name}?" style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort... (kann Platzhalter enthalten)"></textarea>
+              </div>
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 2:</label>
+                <input type="text" placeholder="Weitere Frage..." style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <button class="secondary" onclick="alert('FAQ hinzufügen')">+ FAQ hinzufügen</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Hreflang (Multi-Language)</label>
+            <select>
+              <option value="none" selected>Keine (nur de-AT)</option>
+              <option value="de-de">de-AT + de-DE</option>
+              <option value="multi">Mehrsprachig...</option>
+            </select>
           </div>
         </div>
 
@@ -380,50 +577,223 @@
         <div class="section" id="section-F">
           <h2>F. Interlinking & Navigation</h2>
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Automatische interne Verlinkung zwischen generierten Seiten
+            Fügen Sie automatische Verlinkungsblöcke zu allen generierten Seiten hinzu. Default: 2 Blöcke.
           </p>
 
-          <div class="form-group">
-            <label>
-              <input type="checkbox" checked>
-              Auto-Interlinking aktivieren
-            </label>
-            <span class="inline-help">
-              Erstellt automatisch Links zwischen verwandten Seiten (gleiche Org, andere Location; gleiche Location, andere Org)
-            </span>
+          <div id="interlinking-blocks">
+            <!-- Block 1 -->
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 13px;">Interlinking Block #1</strong>
+                <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕</button>
+              </div>
+
+              <div class="form-group">
+                <label>Überschrift für diesen Block</label>
+                <input type="text" value="Verwandte Seiten" placeholder="z.B. Weitere Insolvenzen...">
+              </div>
+
+              <div class="form-group">
+                <label>Link-Typ</label>
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
+                  <option value="geo-siblings" selected>Geo-Siblings (gleiche Org, andere Locations)</option>
+                  <option value="org-siblings">Org-Siblings (gleiche Location, andere Orgs)</option>
+                  <option value="parent-child">Parent-Child Links</option>
+                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
+                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
+                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
+                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="custom">Custom Query (Mini Query Filter)</option>
+                  <option value="editorial">Editorial Links</option>
+                </select>
+
+                <!-- Mini Query Builder - always visible, grayed out unless Custom -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Datenquelle</label>
+                    <select style="font-size: 12px;">
+                      <option>Alle</option>
+                      <option>Insolvenzen</option>
+                      <option>Jobs</option>
+                      <option>Ausschreibungen</option>
+                    </select>
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                    <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Location (optional)</label>
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                  </div>
+                </div>
+
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
+                  <div id="editorial-links-f1">
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                  </div>
+                  <button class="secondary" style="font-size: 11px;" onclick="alert('Link hinzufügen')">+ Link</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Anzahl Links</label>
+                <input type="number" value="5" min="1" max="50" style="width: 80px;">
+              </div>
+            </div>
+
+            <!-- Block 2 (default visible) -->
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 13px;">Interlinking Block #2</strong>
+                <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕</button>
+              </div>
+
+              <div class="form-group">
+                <label>Überschrift für diesen Block</label>
+                <input type="text" value="Weitere Informationen" placeholder="z.B. Andere Organizations...">
+              </div>
+
+              <div class="form-group">
+                <label>Link-Typ</label>
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
+                  <option value="geo-siblings">Geo-Siblings (gleiche Org, andere Locations)</option>
+                  <option value="org-siblings" selected>Org-Siblings (gleiche Location, andere Orgs)</option>
+                  <option value="parent-child">Parent-Child Links</option>
+                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
+                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
+                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
+                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="custom">Custom Query (Mini Query Filter)</option>
+                  <option value="editorial">Editorial Links</option>
+                </select>
+
+                <!-- Mini Query Builder - always visible, grayed out unless Custom -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Datenquelle</label>
+                    <select style="font-size: 12px;">
+                      <option>Alle</option>
+                      <option>Insolvenzen</option>
+                      <option>Jobs</option>
+                      <option>Ausschreibungen</option>
+                    </select>
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                    <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Location (optional)</label>
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                  </div>
+                </div>
+
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
+                  <div id="editorial-links-f2">
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                  </div>
+                  <button class="secondary" style="font-size: 11px;" onclick="alert('Link hinzufügen')">+ Link</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Anzahl Links</label>
+                <input type="number" value="5" min="1" max="50" style="width: 80px;">
+              </div>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label>Interlinking Strategie</label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox" checked>
-              Geo-Siblings (z.B. "Wien Energie Wien" → "Wien Energie Niederösterreich")
-            </label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox" checked>
-              Org-Siblings (z.B. "Wiener Stadtwerke Wien" → "ÖBB Wien")
-            </label>
-            <label style="margin-left: 20px;">
-              <input type="checkbox">
-              Parent-Child (z.B. "Wien" → "Wien 1010")
-            </label>
-          </div>
+          <button class="secondary" onclick="alert('Neuen Interlinking Block hinzufügen')">+ Weiterer Interlinking Block</button>
 
-          <div class="form-group">
+          <div class="form-group" style="margin-top: 20px;">
             <label>Breadcrumbs</label>
             <select>
               <option>Auto (Home → Index → Organization → Location)</option>
               <option>Custom Template</option>
               <option>Deaktiviert</option>
             </select>
-          </div>
-
-          <div class="form-group">
-            <label>Related Pages Block</label>
-            <input type="text" placeholder="H2 Überschrift (z.B. 'Verwandte Seiten')" value="Verwandte Seiten">
-            <span class="inline-help">
-              Block mit max. 5 verwandten Seiten wird am Ende jeder generierten Seite eingefügt
-            </span>
           </div>
         </div>
 
