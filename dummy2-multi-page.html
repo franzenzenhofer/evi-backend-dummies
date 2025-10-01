@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi-Page Generator - EVI.gv.at</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-extended.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Multi-Page Generator - Jobs × Organisationen × Standorte</h1>
+    </div>
+
+    <div class="layout">
+      <div class="main-content">
+        <div class="section">
+          <h2>A. Scope & Templates</h2>
+          <div class="form-group">
+            <label>Seitenfamilie (intern)</label>
+            <input type="text" id="familyName" value="Jobs • Ministerien + ÖNB" placeholder="z.B. Jobs Ministerien">
+          </div>
+          <div class="form-group">
+            <label>URL-Muster</label>
+            <input type="text" id="routePattern" value="/jobs/{org_slug}-{location_slug}">
+          </div>
+          <div class="form-group">
+            <label>H1 Template</label>
+            <input type="text" id="h1Tpl" value="Jobs {org_name} {location_name}">
+          </div>
+          <div class="form-group">
+            <label>SEO Title Template</label>
+            <input type="text" id="titleTpl" value="Jobs {org_short} – {location_name}">
+          </div>
+          <div class="form-group">
+            <label>Meta Description Template</label>
+            <textarea id="metaTpl">{results_number} Jobs bei {org_name} in {location_name} (aktiv & inaktiv).</textarea>
+          </div>
+          <div class="form-group">
+            <label>Listenelemente pro Seite</label>
+            <input type="number" id="itemsPerPage" value="15" min="1" max="100">
+          </div>
+          <div class="form-group">
+            <label>Zeitfenster</label>
+            <select id="timeWindow">
+              <option value="start" selected>Von Anfang an</option>
+              <option value="90">Letzte 90 Tage</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>B. Organisationen</h2>
+          <div style="margin-bottom: 10px; display: flex; gap: 10px;">
+            <button class="secondary" onclick="selectAllOrgs()">Alle auswählen</button>
+            <button class="secondary" onclick="selectNone('orgs')">Keine</button>
+          </div>
+          <div class="checkbox-list" id="orgsList">
+            <div class="checkbox-item">
+              <input type="checkbox" id="org1" checked>
+              <label for="org1">Bundesministerium für Finanzen (BMF)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="org2" checked>
+              <label for="org2">Bundesministerium für Inneres (BMI)</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="org3" checked>
+              <label for="org3">Landwirtschaftsministerium</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="org4" checked>
+              <label for="org4">Österreichische Nationalbank (ÖNB)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>C. Standorte</h2>
+          <div style="margin-bottom: 10px; display: flex; gap: 10px;">
+            <button class="secondary" onclick="selectAllLocs()">Alle auswählen</button>
+            <button class="secondary" onclick="selectNone('locs')">Keine</button>
+          </div>
+          <div class="checkbox-list" id="locsList">
+            <div class="checkbox-item">
+              <input type="checkbox" id="loc1" checked>
+              <label for="loc1">Wien</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="loc2" checked>
+              <label for="loc2">Graz</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="loc3" checked>
+              <label for="loc3">Linz</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="loc4">
+              <label for="loc4">Salzburg</label>
+            </div>
+            <div class="checkbox-item">
+              <input type="checkbox" id="loc5">
+              <label for="loc5">Innsbruck</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>D. Qualitätskriterien & Policy</h2>
+          <div class="form-group">
+            <label>Mindestanzahl Ergebnisse</label>
+            <input type="number" id="minResults" value="5" min="1">
+          </div>
+          <div class="form-group">
+            <label>Status-Filter</label>
+            <div style="display: flex; gap: 10px;">
+              <label><input type="checkbox" checked> Aktiv</label>
+              <label><input type="checkbox" checked> Inaktiv</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Publish Policy (unter Schwellwert)</label>
+            <select id="publishPolicy">
+              <option value="draft-noindex" selected>Als Draft mit noindex erstellen</option>
+              <option value="skip">Nicht erstellen</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+          <button onclick="alert('Dry-Run')">Dry-Run generieren</button>
+          <button onclick="alert('Config gespeichert!')" class="secondary">Config speichern</button>
+          <button onclick="alert('Veröffentlicht!')">Passing veröffentlichen</button>
+        </div>
+      </div>
+
+      <div class="preview-panel">
+        <h3>Generierungs-Impact</h3>
+        <div class="metric">
+          <span class="metric-label">Kombinationen</span>
+          <span class="metric-value">12</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">✅ Bestanden</span>
+          <span class="metric-value" style="color: var(--evi-success);">9</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">⚠️ Unter Schwellwert</span>
+          <span class="metric-value" style="color: var(--evi-warning);">3</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Werden publiziert</span>
+          <span class="metric-value">9</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectAllOrgs() { document.querySelectorAll('#orgsList input').forEach(el => el.checked = true); }
+    function selectAllLocs() { document.querySelectorAll('#locsList input').forEach(el => el.checked = true); }
+    function selectNone(type) {
+      const sel = type === 'orgs' ? '#orgsList input' : '#locsList input';
+      document.querySelectorAll(sel).forEach(el => el.checked = false);
+    }
+  </script>
+</body>
+</html>
