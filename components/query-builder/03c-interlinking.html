@@ -20,7 +20,24 @@
 
               <div class="form-group">
                 <label>Link-Typ</label>
-                <select onchange="this.nextElementSibling.style.opacity = this.value === 'custom' ? '1' : '0.5'; this.nextElementSibling.style.pointerEvents = this.value === 'custom' ? 'auto' : 'none';">
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
                   <option value="random-main" selected>Neueste (gleiche Query wie Main-Liste)</option>
                   <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
                   <option value="newest-other-query">Links zu anderen Query Pages - Neueste</option>
@@ -56,8 +73,8 @@
                   </div>
                 </div>
 
-                <!-- Editorial Links - grayed out unless Editorial -->
-                <div style="display: none; margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray);">
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
                   <div id="editorial-links">
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
@@ -89,18 +106,6 @@
                 <label>Anzahl Links</label>
                 <input type="number" value="5" min="1" max="50" style="width: 80px;">
               </div>
-
-              <div class="form-group">
-                <label>Position</label>
-                <select>
-                  <option>Im Hauptinhalt (nach Liste)</option>
-                  <option>Sidebar (rechts)</option>
-                  <option>Footer-Bereich</option>
-                </select>
-                <span class="inline-help">
-                  Links werden als <code>&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> gerendert. Überschrift als <code>&lt;h3&gt;</code>.
-                </span>
-              </div>
             </div>
 
             <!-- Block 2 (default visible) -->
@@ -117,7 +122,24 @@
 
               <div class="form-group">
                 <label>Link-Typ</label>
-                <select onchange="this.nextElementSibling.style.opacity = this.value === 'custom' ? '1' : '0.5'; this.nextElementSibling.style.pointerEvents = this.value === 'custom' ? 'auto' : 'none';">
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
                   <option value="random-main">Neueste (gleiche Query wie Main-Liste)</option>
                   <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
                   <option value="newest-other-query" selected>Links zu anderen Query Pages - Neueste</option>
@@ -128,6 +150,7 @@
                   <option value="editorial">Editorial Links</option>
                 </select>
 
+                <!-- Mini Query Builder - always visible, grayed out unless Custom -->
                 <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
                   <div style="margin-bottom: 10px;">
@@ -136,6 +159,7 @@
                       <option>Alle</option>
                       <option>Insolvenzen</option>
                       <option>Jobs</option>
+                      <option>Ausschreibungen</option>
                     </select>
                   </div>
                   <div style="margin-bottom: 10px;">
@@ -144,23 +168,42 @@
                   </div>
                   <div style="margin-bottom: 10px;">
                     <label style="font-size: 12px;">Location (optional)</label>
-                    <input type="text" placeholder="z.B. Wien" style="font-size: 12px;">
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
                   </div>
+                </div>
+
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
+                  <div id="editorial-links-2">
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                  </div>
+                  <button class="secondary" style="font-size: 11px;" onclick="alert('Link hinzufügen')">+ Link</button>
                 </div>
               </div>
 
               <div class="form-group">
                 <label>Anzahl Links</label>
                 <input type="number" value="5" min="1" max="50" style="width: 80px;">
-              </div>
-
-              <div class="form-group">
-                <label>Position</label>
-                <select>
-                  <option>Im Hauptinhalt (nach Liste)</option>
-                  <option selected>Sidebar (rechts)</option>
-                  <option>Footer-Bereich</option>
-                </select>
               </div>
             </div>
           </div>
