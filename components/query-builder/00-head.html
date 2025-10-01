@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Query Builder - Landing Page Generator - EVI.gv.at</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles-extended.css">
+  <style>
+    .help-icon { cursor: help; color: var(--evi-red); font-size: 14px; margin-left: 5px; }
+    .placeholder-btn { background: var(--evi-light-gray); border: 1px solid var(--evi-border);
+      padding: 5px 10px; font-size: 12px; border-radius: 3px; cursor: pointer; margin-left: 10px; }
+    .placeholder-btn:hover { background: var(--evi-border); }
+    .inline-help { font-size: 11px; color: var(--evi-gray); margin-top: 3px; display: block; }
+    .filter-chip { display: inline-block; background: var(--evi-red); color: #fff;
+      padding: 5px 10px; border-radius: 15px; margin: 2px; font-size: 12px; }
+    .qc-blocker { color: #d32f2f; font-weight: bold; }
+    .qc-warning { color: var(--evi-warning); }
+    .qc-pass { color: var(--evi-success); }
+    .section-anchor { position: fixed; left: 20px; top: 200px; background: #fff;
+      border: 1px solid var(--evi-border); padding: 15px; border-radius: 4px; width: 120px; }
+    .section-anchor a { display: block; padding: 8px 0; text-decoration: none; color: var(--evi-gray);
+      border-left: 3px solid transparent; padding-left: 10px; margin-left: -10px; }
+    .section-anchor a:hover { color: var(--evi-red); border-left-color: var(--evi-red); }
+    .section-anchor a.active { color: var(--evi-red); border-left-color: var(--evi-red); font-weight: bold; }
+    .layout-3col { display: grid; grid-template-columns: 140px 1fr 400px; gap: 30px; }
+    .main-scroll { max-height: calc(100vh - 150px); overflow-y: auto; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="../logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Query Builder - Landing Page Generator</h1>
+      <p style="font-size: 14px; color: var(--evi-gray); margin: 5px 0 0 0;">
+        Erstellen Sie SEO-optimierte Landing Pages mit leistungsstarken Suchfiltern
+      </p>
+    </div>
+
+    <div class="layout-3col">
+      <div class="section-anchor">
+        <strong style="font-size: 12px; color: var(--evi-gray); display: block; margin-bottom: 10px;">
+          SEKTIONEN
+        </strong>
+        <a href="#section-01">01. Basis</a>
+        <a href="#section-02">02. Query Builder</a>
+        <a href="#section-03">03. Content</a>
+        <a href="#section-04">04. SEO</a>
+        <a href="#section-05">05. Enrichment</a>
+        <a href="#section-06">06. QC & Publish</a>
+      </div>
+
+      <div class="main-scroll">

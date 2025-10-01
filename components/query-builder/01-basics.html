@@ -1,0 +1,62 @@
+        <div class="section" id="section-01">
+          <h2>01. Basis</h2>
+
+          <div class="form-group">
+            <label>
+              Seitenname (intern)
+              <span class="help-icon" title="Nur für interne Verwaltung sichtbar">ℹ️</span>
+            </label>
+            <input type="text" value="Insolvenzen Wien" placeholder="z.B. Insolvenzen - Wien">
+            <span class="inline-help">Dieser Name erscheint nur im Backend, nicht auf der veröffentlichten Seite</span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              URL-Slug
+              <span class="help-icon" title="Automatische 301-Weiterleitung bei Änderung">ℹ️</span>
+            </label>
+            <input type="text" value="/lp/insolvenzen-wien" placeholder="/lp/...">
+            <span class="inline-help">
+              Bei Slug-Änderung wird automatisch eine 301-Weiterleitung erstellt. Validierung auf Eindeutigkeit.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Modus
+              <span class="help-icon" title="Live = immer aktuell, Snapshot = eingefroren">ℹ️</span>
+            </label>
+            <select>
+              <option value="live" selected>
+                Live (Seite zeigt immer aktuelle Daten, täglich um 03:00 Uhr aktualisiert)
+              </option>
+              <option value="snapshot">
+                Snapshot (Ergebnis-IDs zum Publish-Zeitpunkt eingefroren, keine Updates)
+              </option>
+            </select>
+            <span class="inline-help">
+              <strong>Live:</strong> Background Job aktualisiert JSON-LD itemCount täglich.
+              <strong>Snapshot:</strong> IDs werden gespeichert, Seite ändert sich nicht.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select>
+              <option value="draft">Entwurf</option>
+              <option value="review">Zur Prüfung</option>
+              <option value="published">Veröffentlicht</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Erstellt von</label>
+            <input type="text" value="Franz Enzenhofer" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>Version</label>
+            <input type="text" value="1" disabled>
+            <span class="inline-help">Versionshistorie mit Diff-Viewer und Rollback-Funktion verfügbar</span>
+          </div>
+        </div>
