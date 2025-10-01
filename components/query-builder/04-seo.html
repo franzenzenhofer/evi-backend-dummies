@@ -40,54 +40,10 @@
             <label>Robots</label>
             <div style="display: flex; gap: 15px;">
               <label><input type="checkbox" checked> Index</label>
-              <label><input type="checkbox" checked> Follow</label>
             </div>
             <span class="inline-help">
               ⚠️ QC warnt bei: noindex + Sitemap include (Mismatch)
             </span>
-          </div>
-
-          <div class="form-group">
-            <label>Pagination Policy</label>
-            <select>
-              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
-              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>OpenGraph / Twitter</label>
-            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
-            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
-            <div style="margin-top: 10px;">
-              <label>
-                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
-              </label>
-              <label style="margin-left: 15px;">
-                <input type="radio" name="og-image" value="upload"> Upload Image...
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Schema.org</label>
-            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
-              <label><input type="checkbox" checked> ItemList (mit itemCount)</label>
-              <label><input type="checkbox" checked> BreadcrumbList</label>
-              <label><input type="checkbox"> FAQPage (bei FAQ im Body)</label>
-            </div>
-            <span class="inline-help">
-              ItemList: nur erste 10 Items; BreadcrumbList: Auto-generiert aus Slug
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>Hreflang (Multi-Language)</label>
-            <select>
-              <option value="none" selected>Keine (nur de-AT)</option>
-              <option value="de-de">de-AT + de-DE</option>
-              <option value="multi">Mehrsprachig...</option>
-            </select>
           </div>
 
           <div class="form-group">
@@ -111,5 +67,64 @@
             <span class="inline-help">
               Nur Seite 1 wird in Sitemap gelistet (bei Pagination)
             </span>
+          </div>
+
+          <div class="form-group">
+            <label>Pagination Policy</label>
+            <select>
+              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
+              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
+              <option value="all">Alle Ergebnisse auf einer Seite anzeigen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>OpenGraph</label>
+            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>OG Image</label>
+            <div>
+              <label>
+                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
+              </label>
+            </div>
+            <div style="margin-top: 10px;">
+              <label>
+                <input type="radio" name="og-image" value="upload"> Upload eigenes Bild
+              </label>
+              <input type="file" accept="image/*" style="margin-left: 10px; display: none;" id="og-upload">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>FAQ Editor (Schema.org)</label>
+            <span class="inline-help">
+              Erstellen Sie FAQs. Schema.org FAQPage wird automatisch generiert.
+            </span>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin-top: 10px; background: #fff;">
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 1:</label>
+                <input type="text" placeholder="z.B. Was sind Insolvenzen?" style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 2:</label>
+                <input type="text" placeholder="Weitere Frage..." style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <button class="secondary" onclick="alert('FAQ hinzufügen')">+ FAQ hinzufügen</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Hreflang (Multi-Language)</label>
+            <select>
+              <option value="none" selected>Keine (nur de-AT)</option>
+              <option value="de-de">de-AT + de-DE</option>
+              <option value="multi">Mehrsprachig...</option>
+            </select>
           </div>
         </div>
