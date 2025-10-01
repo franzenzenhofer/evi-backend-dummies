@@ -1,0 +1,130 @@
+        <div class="section" id="section-content">
+          <h2>Content</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Content-Einstellungen für die generierten Seiten.
+          </p>
+
+          <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
+            <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 10px; font-size: 12px;">
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{query-term}')">
+                {query-term}
+              </code>
+              <span>→ "Insolvenzen"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{location-name}')">
+                {location-name}
+              </code>
+              <span>→ "Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number}')">
+                {results-number}
+              </code>
+              <span>→ "1.274"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number-rounded}')">
+                {results-number-rounded}
+              </code>
+              <span>→ "1,3 Tsd."</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{time-window}')">
+                {time-window}
+              </code>
+              <span>→ "letzte 90 Tage"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{publish-date}')">
+                {publish-date}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{last-updated}')">
+                {last-updated}
+              </code>
+              <span>→ "01.10.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{first-result-date}')">
+                {first-result-date}
+              </code>
+              <span>→ "15.03.2024"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{latest-result-date}')">
+                {latest-result-date}
+              </code>
+              <span>→ "30.09.2025"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{brand}')">
+                {brand}
+              </code>
+              <span>→ "EVI.gv.at"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{separator}')">
+                {separator}
+              </code>
+              <span>→ " - " (Trennzeichen, z.B. für Titles)</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{top-facet:branche}')">
+                {top-facet:branche}
+              </code>
+              <span>→ "Bau, Handel, Dienstleistungen"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{trend-delta}')">
+                {trend-delta}
+              </code>
+              <span>→ "+12% zum Vormonat" (nur mit Enrichment)</span>
+            </div>
+          </div>
+
+          <h3 style="font-size: 15px; margin: 25px 0 15px 0;">Content-Blöcke</h3>
+
+          <div class="form-group">
+            <label>Body VOR der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="Einleitungstext, Kontext, Hinweise..."></textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Listen-Layout</label>
+            <select>
+              <option value="list" selected>Liste (Standard)</option>
+              <option value="grid">Grid (Karten)</option>
+              <option value="map-list">Karte + Liste</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Ergebnisse pro Seite</label>
+            <input type="number" value="15" min="1" max="100">
+            <span class="inline-help">Standard: 15 (kann auch 20 sein, siehe Spec)</span>
+          </div>
+
+          <div class="form-group">
+            <label>Expose Filters (optional)</label>
+            <input type="text" placeholder="z.B. bezirk,branche"
+                   value="bezirk,branche">
+            <span class="inline-help">
+              Besucher-sichtbare Filter als Chips. Komma-getrennt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Body NACH der Liste (Rich Text, optional)</label>
+            <textarea rows="3" placeholder="Erklärungen, CTAs, weitere Informationen..."></textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+          </div>

@@ -1,7 +1,8 @@
-        <div class="section" id="section-F">
-          <h2>F. Interlinking & Navigation</h2>
+        <div class="section" id="section-interlinking">
+          <h2>Interlinking</h2>
+
           <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
-            Fügen Sie automatische Verlinkungsblöcke zu allen generierten Seiten hinzu. Default: 2 Blöcke.
+            Fügen Sie automatische Verlinkungsblöcke hinzu. Default: 2 Blöcke mit je 5 zufälligen Links.
           </p>
 
           <div id="interlinking-blocks">
@@ -14,7 +15,7 @@
 
               <div class="form-group">
                 <label>Überschrift für diesen Block</label>
-                <input type="text" value="Verwandte Seiten" placeholder="z.B. Weitere Insolvenzen...">
+                <input type="text" value="EVI.gv.at Archiv" placeholder="z.B. Verwandte Seiten, Mehr zum Thema...">
               </div>
 
               <div class="form-group">
@@ -37,13 +38,12 @@
                     editorialLinks.style.pointerEvents = 'none';
                   }
                 ">
-                  <option value="geo-siblings" selected>Geo-Siblings (gleiche Org, andere Locations)</option>
-                  <option value="org-siblings">Org-Siblings (gleiche Location, andere Orgs)</option>
-                  <option value="parent-child">Parent-Child Links</option>
-                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
-                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
-                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
-                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="random-main" selected>Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query">Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
                   <option value="custom">Custom Query (Mini Query Filter)</option>
                   <option value="editorial">Editorial Links</option>
                 </select>
@@ -76,9 +76,9 @@
                 <!-- Editorial Links - always visible, grayed out unless Editorial -->
                 <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
-                  <div id="editorial-links-f1">
+                  <div id="editorial-links">
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
-                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
                       <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
                     </div>
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
@@ -117,7 +117,7 @@
 
               <div class="form-group">
                 <label>Überschrift für diesen Block</label>
-                <input type="text" value="Weitere Informationen" placeholder="z.B. Andere Organizations...">
+                <input type="text" value="Weitere Informationen" placeholder="z.B. Verwandte Seiten...">
               </div>
 
               <div class="form-group">
@@ -140,13 +140,12 @@
                     editorialLinks.style.pointerEvents = 'none';
                   }
                 ">
-                  <option value="geo-siblings">Geo-Siblings (gleiche Org, andere Locations)</option>
-                  <option value="org-siblings" selected>Org-Siblings (gleiche Location, andere Orgs)</option>
-                  <option value="parent-child">Parent-Child Links</option>
-                  <option value="newest-same-batch">Neueste aus dem gleichen Batch</option>
-                  <option value="random-same-batch">Random aus dem gleichen Batch</option>
-                  <option value="newest-other-batch">Links zu anderen Batches - Neueste</option>
-                  <option value="random-other-batch">Links zu anderen Batches - Random</option>
+                  <option value="random-main">Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query" selected>Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
                   <option value="custom">Custom Query (Mini Query Filter)</option>
                   <option value="editorial">Editorial Links</option>
                 </select>
@@ -176,9 +175,9 @@
                 <!-- Editorial Links - always visible, grayed out unless Editorial -->
                 <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
                   <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
-                  <div id="editorial-links-f2">
+                  <div id="editorial-links-2">
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
-                      <input type="text" placeholder="URL (z.B. /lp/alle-insolvenzen)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
                       <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
                     </div>
                     <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
@@ -210,13 +209,5 @@
           </div>
 
           <button class="secondary" onclick="alert('Neuen Interlinking Block hinzufügen')">+ Weiterer Interlinking Block</button>
-
-          <div class="form-group" style="margin-top: 20px;">
-            <label>Breadcrumbs</label>
-            <select>
-              <option>Auto (Home → Index → Organization → Location)</option>
-              <option>Custom Template</option>
-              <option>Deaktiviert</option>
-            </select>
-          </div>
         </div>
+        <!-- End of interlinking section -->
