@@ -1,0 +1,61 @@
+        <div class="section" id="section-01">
+          <h2>01. Basis</h2>
+
+          <div class="form-group">
+            <label>
+              Kampagnenname (intern)
+              <span class="help-icon" title="Name für diese Bulk-Generierung">ℹ️</span>
+            </label>
+            <input type="text" value="Insolvenzen Multi-Locations" placeholder="z.B. Jobs Österreich-weit">
+            <span class="inline-help">Dieser Name hilft, die Bulk-Generierung zu identifizieren</span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              URL-Struktur Pattern
+              <span class="help-icon" title="Template für alle generierten URLs">ℹ️</span>
+            </label>
+            <input type="text" value="/lp/{org_slug}-{location_slug}" placeholder="/lp/{org_slug}-{location_slug}">
+            <span class="inline-help">
+              Platzhalter: {org_slug}, {org_short}, {location_slug}. Beispiel: /lp/polizei-wien
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Modus
+              <span class="help-icon" title="Live = immer aktuell, Snapshot = eingefroren">ℹ️</span>
+            </label>
+            <select>
+              <option value="live" selected>
+                Live (alle Seiten zeigen aktuelle Daten, täglich um 03:00 Uhr aktualisiert)
+              </option>
+              <option value="snapshot">
+                Snapshot (Ergebnis-IDs zum Publish-Zeitpunkt eingefroren, keine Updates)
+              </option>
+            </select>
+            <span class="inline-help">
+              Gilt für ALLE generierten Seiten dieser Kampagne.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Status</label>
+            <select>
+              <option value="draft">Entwurf</option>
+              <option value="review">Zur Prüfung</option>
+              <option value="published">Veröffentlicht</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Erstellt von</label>
+            <input type="text" value="Franz Enzenhofer" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>Version</label>
+            <input type="text" value="1" disabled>
+            <span class="inline-help">Versionshistorie mit Diff-Viewer und Rollback-Funktion verfügbar</span>
+          </div>
+        </div>
