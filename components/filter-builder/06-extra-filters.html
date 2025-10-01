@@ -1,0 +1,99 @@
+        <div class="section" id="section-06">
+          <h2>06. Familien-Spezifische Filter</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Zusätzliche Filter basierend auf den gewählten Familien (dynamisch).
+          </p>
+
+          <!-- Firmenbuch Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px;">Firmenbuch</strong>
+
+            <div class="form-group">
+              <label>Rechtsform (Mehrfachauswahl)</label>
+              <select multiple size="5" style="height: auto; font-size: 12px;">
+                <option>GmbH</option>
+                <option>AG</option>
+                <option>OG</option>
+                <option>KG</option>
+                <option>Einzelunternehmen</option>
+                <option>FlexCo</option>
+                <option>SE (Societas Europaea)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Ereignis-Stichtag (für JAb/Konzernabschluss)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Hauptversammlung Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff;">
+            <strong style="display: block; margin-bottom: 10px;">Hauptversammlung</strong>
+
+            <div class="form-group">
+              <label>Termin (Datum der HV)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Anlegerinfo Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; opacity: 0.5;">
+            <strong style="display: block; margin-bottom: 10px;">Anlegerinformationen & Kapitalmarkt</strong>
+
+            <div class="form-group">
+              <label>ISIN (komma-getrennt oder Mehrfacheingabe)</label>
+              <input type="text" placeholder="AT0000937503, AT0000A1QA38" style="font-size: 12px;">
+            </div>
+
+            <div class="form-group">
+              <label>Zahltag (Dividende)</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+
+            <div class="form-group">
+              <label>Ex-Tag</label>
+              <input type="date" style="font-size: 12px;">
+              <span style="margin: 0 10px;">bis</span>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+          <!-- Stellen Filters -->
+          <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; opacity: 0.5;">
+            <strong style="display: block; margin-bottom: 10px;">Stellenausschreibungen</strong>
+
+            <div class="form-group">
+              <label>Dienststelle-Kategorie</label>
+              <select style="font-size: 12px;">
+                <option>Alle</option>
+                <option>Bund</option>
+                <option>Land</option>
+                <option>Gemeinde</option>
+                <option>Staatsnah (AG/GmbH)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Hierarchie</label>
+              <select style="font-size: 12px;">
+                <option>Alle</option>
+                <option>Leitung / Vorstand / Geschäftsführung</option>
+                <option>Justiz / Richter</option>
+                <option>Sonstige</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Bewerbungsfrist (bis)</label>
+              <input type="date" style="font-size: 12px;">
+            </div>
+          </div>
+
+        </div>

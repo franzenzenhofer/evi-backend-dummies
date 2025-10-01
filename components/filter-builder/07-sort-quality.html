@@ -1,0 +1,48 @@
+        <div class="section" id="section-07">
+          <h2>07. Sortierung & Qualität</h2>
+
+          <div class="form-group">
+            <label>Sortierung (typ-sensitiv)</label>
+            <select>
+              <option value="publish_date_desc" selected>Neueste zuerst (Publish Date desc)</option>
+              <option value="bewerbungsfrist_asc">Bewerbungsfrist aufsteigend (Stellen)</option>
+              <option value="termin_asc">Termin aufsteigend (HV)</option>
+              <option value="zahltag_asc">Zahltag aufsteigend (Anlegerinfo)</option>
+              <option value="relevance">Relevanz (Volltext-Score)</option>
+              <option value="alphabetical">Alphabetisch (Titel)</option>
+            </select>
+            <span class="inline-help">
+              Standard: Neueste zuerst. Für Stellen/HV: baldige Fristen/Termine bevorzugt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Qualitäts-Filter</label>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px;">
+              <label><input type="checkbox" checked> Duplikate entfernen</label>
+              <label><input type="checkbox"> Mindestens 5 Felder ausgefüllt</label>
+              <label><input type="checkbox"> Nur deutsche Sprache</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Result Cap (Obergrenze)</label>
+            <input type="number" value="2000" min="1" max="10000">
+            <span class="inline-help">
+              Schützt vor über-breiten Queries. Max 2000 empfohlen für Performance.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Zero-Result Policy</label>
+            <select>
+              <option value="404" selected>HTTP 404 (nicht in Sitemap, nicht verlinkt)</option>
+              <option value="empty">Zeige leere Ergebnisseite (0 Ergebnisse angezeigt)</option>
+              <option value="relax">Automatisch Filter lockern (Relax-Order: Gemeinde→Bezirk→Bundesland→AT)</option>
+            </select>
+            <span class="inline-help">
+              404: Seite wird nicht generiert. Leer: "Keine Ergebnisse". Relax: Stufenweise Filter erweitern.
+            </span>
+          </div>
+
+        </div>
