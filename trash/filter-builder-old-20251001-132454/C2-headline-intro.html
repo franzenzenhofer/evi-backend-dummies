@@ -1,0 +1,67 @@
+        <div class="section" id="section-C2">
+          <h2>C2. Headline & Intro Templates</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            H1 und Intro-Text werden für jede generierte Seite aus diesen Templates erstellt.
+          </p>
+
+          <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
+            <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
+            <div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; margin-top: 10px; font-size: 12px;">
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{org-name}')">
+                {org-name}
+              </code>
+              <span>→ "Wiener Stadtwerke GmbH"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{org-short}')">
+                {org-short}
+              </code>
+              <span>→ "Stadtwerke Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{location-name}')">
+                {location-name}
+              </code>
+              <span>→ "Wien"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{results-number}')">
+                {results-number}
+              </code>
+              <span>→ "1.274"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{brand}')">
+                {brand}
+              </code>
+              <span>→ "EVI.gv.at"</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{separator}')">
+                {separator}
+              </code>
+              <span>→ " - " (Trennzeichen)</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>H1 Template</label>
+            <input type="text" value="Insolvenzen {org-name} {separator} {location-name}"
+                   placeholder="z.B. Jobs {org-name} {location-name}">
+            <span class="inline-help">
+              Wird für jede generierte Seite mit den entsprechenden Werten gefüllt.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser Template (Rich Text)</label>
+            <textarea rows="3">Aktuelle Übersicht zu Insolvenzen bei {org-name} in {location-name}. Insgesamt {results-number} Fälle.</textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+            <span class="inline-help">
+              Intro-Text erscheint vor der Ergebnisliste auf jeder generierten Seite.
+            </span>
+          </div>
+        </div>

@@ -1,0 +1,80 @@
+        <div class="section" id="section-A">
+          <h2>A. Scope & Template Selection</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Definieren Sie den Rahmen für die Multi-Page Generierung
+          </p>
+
+          <div class="form-group">
+            <label>Datenquellen (Mehrfachauswahl)</label>
+            <div style="border: 1px solid var(--evi-border); padding: 10px; background: #fff;">
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Alle Datenquellen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox" checked> Insolvenzen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Jobs/Stellenausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Ausschreibungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Förderungen
+              </label>
+              <label style="display: block; padding: 3px 0;">
+                <input type="checkbox"> Immobilien
+              </label>
+            </div>
+            <span class="inline-help">
+              Mehrfachauswahl erlaubt. Für jede Datenquelle werden separate Seiten generiert.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Template Basis</label>
+            <select>
+              <option>Standard Landing Page Template</option>
+              <option>Custom Template (Upload HTML)</option>
+            </select>
+            <span class="inline-help">
+              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, {separator}, {results-number}, etc.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked> Zeige abgelaufenen Content
+            </label>
+            <span class="inline-help">
+              Gilt für alle generierten Seiten. Einige Content-Typen wie Jobs haben ein Ablaufdatum.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>URL Struktur</label>
+            <select>
+              <option>/lp/{org-slug}-{location-slug}</option>
+              <option>/{location-slug}/{org-slug}</option>
+              <option>/org/{org-slug}/loc/{location-slug}</option>
+              <option>Custom (mit Platzhaltern)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked>
+              Generate parent pages (e.g., /lp/alle-insolvenzen-wien)
+            </label>
+            <span class="inline-help">
+              Erstellt zusätzlich Aggregation-Seiten für alle Organizations in einer Location
+            </span>
+          </div>
+
+          <div style="background: #e3f2fd; padding: 12px; margin: 15px 0; border-radius: 4px; border-left: 4px solid #1976d2;">
+            <strong style="font-size: 12px; color: #1565c0;">ℹ️ Erwartete Seiten:</strong>
+            <p style="font-size: 11px; margin: 5px 0 0 0; color: #1565c0;">
+              Bei 15 Organizations × 9 Bundesländer = 135 Seiten + 9 Parent Pages = 144 Seiten total
+            </p>
+          </div>
+        </div>
