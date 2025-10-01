@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "Interactive HTML prototypes for EVI.gv.at workshop",
   "scripts": {
-    "build": "tsc --noEmit",
-    "lint": "eslint . --ext .ts,.js,.html",
-    "test": "npm run build && npm run lint"
+    "build": "node build.js",
+    "lint": "eslint components/**/*.html components/**/*.js build.js --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run lint && npm run typecheck && npm run build",
+    "watch": "nodemon --watch components --exec npm run build"
   },
   "repository": {
     "type": "git",

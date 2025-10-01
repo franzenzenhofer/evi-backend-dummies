@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platzhalter-Referenz - EVI.gv.at</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .placeholder-grid { display: grid; grid-template-columns: 200px 1fr 150px; gap: 15px; padding: 20px; }
+    .placeholder-grid div { padding: 10px; background: #f9f9f9; border-left: 3px solid var(--evi-red); }
+    .placeholder-code { font-family: monospace; font-weight: bold; color: var(--evi-red); }
+    .placeholder-example { font-style: italic; color: var(--evi-gray); font-size: 13px; }
+    h2 { margin-top: 30px; padding-bottom: 10px; border-bottom: 2px solid var(--evi-red); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Platzhalter-Referenz für Landing Pages</h1>
+    </div>
+
+    <h2>Basis-Platzhalter</h2>
+    <div class="placeholder-grid">
+      <div class="placeholder-code">%query-term%</div>
+      <div>Der Haupt-Suchbegriff / Index-Name</div>
+      <div class="placeholder-example">Insolvenzen</div>
+
+      <div class="placeholder-code">%location-name%</div>
+      <div>Name des Standorts (Stadt/Bundesland)</div>
+      <div class="placeholder-example">Wien</div>
+
+      <div class="placeholder-code">%results-number%</div>
+      <div>Anzahl der Ergebnisse (formatiert)</div>
+      <div class="placeholder-example">1.274</div>
+
+      <div class="placeholder-code">%results-number-rounded%</div>
+      <div>Gerundete Ergebniszahl</div>
+      <div class="placeholder-example">1,3 Tsd.</div>
+
+      <div class="placeholder-code">%time-window%</div>
+      <div>Beschreibung des Zeitfensters</div>
+      <div class="placeholder-example">letzte 90 Tage</div>
+
+      <div class="placeholder-code">%publish-date%</div>
+      <div>Datum der Veröffentlichung</div>
+      <div class="placeholder-example">01.10.2025</div>
+
+      <div class="placeholder-code">%last-updated%</div>
+      <div>Datum der letzten Aktualisierung</div>
+      <div class="placeholder-example">01.10.2025</div>
+    </div>
+
+    <h2>Datums-Platzhalter</h2>
+    <div class="placeholder-grid">
+      <div class="placeholder-code">%first-result-date%</div>
+      <div>Datum des ältesten Ergebnisses</div>
+      <div class="placeholder-example">15.03.2024</div>
+
+      <div class="placeholder-code">%latest-result-date%</div>
+      <div>Datum des neuesten Ergebnisses</div>
+      <div class="placeholder-example">30.09.2025</div>
+    </div>
+
+    <h2>Trend & Analyse (Enrichment aktiviert)</h2>
+    <div class="placeholder-grid">
+      <div class="placeholder-code">%trend-delta%</div>
+      <div>Veränderung zum Vormonat</div>
+      <div class="placeholder-example">+12% zum Vormonat</div>
+
+      <div class="placeholder-code">%top-facet:branche%</div>
+      <div>Top 3 Branchen</div>
+      <div class="placeholder-example">Bau, Handel, Dienstleistungen</div>
+    </div>
+  </div>
+</body>
+</html>

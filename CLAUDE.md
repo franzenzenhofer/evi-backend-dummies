@@ -1,37 +1,58 @@
 # EVI.gv.at Backend Dummies
 
 ## Project Overview
-Interactive HTML prototypes for the EVI.gv.at workshop demonstrating two different landing page generation approaches.
+Interactive HTML prototypes for EVI.gv.at workshop demonstrating landing page generation.
 
 ## Purpose
-Workshop demonstrations for www.evi.gv.at (Austrian government portal) showing:
-1. **Single Landing Page Generator** - Query-builder for creating individual SEO-optimized landing pages
-2. **Multi-Page Filtered Generator** - Bulk page generator for organizations × locations
+Workshop demonstrations for www.evi.gv.at (Austrian government portal):
+1. **Query Builder** (`query-builder.html`) - Single page generator with comprehensive filters
+2. **Filter Builder** (`filter-builder.html`) - Multi-page bulk generator (orgs × locations)
 
-## Technical Requirements
-- Maximum 75 lines per code file (enforced via ESLint)
-- TypeScript strict mode
-- No dependencies - pure HTML/CSS/JS
-- Responsive design matching EVI.gv.at look and feel
+## CRITICAL: 75-Line Limit & Build System
 
-## Files
-- `dummy1-single-page.html` - Single landing page generator interface
-- `dummy2-multi-page.html` - Multi-page bulk generator interface
-- `styles.css` - Shared styles matching EVI.gv.at design
-- `utils.ts` - Shared TypeScript utilities
+### Architecture
+```
+components/               # Source files (max 75 lines each!)
+├── query-builder/       # Sections 01-06 for single-page generator
+├── filter-builder/      # Sections A-G for multi-page generator
+└── shared/              # Reusable components
 
-## Development
-```bash
-npm run build  # Compile TypeScript
-npm run lint   # Check code quality
+public/                  # Built output (no line limits)
+├── query-builder.html   # Final file for workshop
+└── filter-builder.html  # Final file for workshop
+
+build.js                 # Concatenates components → public/
 ```
 
-## Workshop Goals
-Demonstrate how these interfaces enable editors to:
-- Create SEO-optimized landing pages without coding
-- Use templates with placeholders (%results-number%, %location-name%, etc.)
-- Apply quality criteria (min 5 results)
-- Preview, validate, and publish pages
+### 75-Line Rule (ENFORCED!)
+- **Every component file**: MAX 75 lines (enforced by ESLint)
+- **Skip blank lines & comments** in count
+- **Split large sections** into multiple component files
+- **Final public/ files**: No limit (auto-generated)
+
+### Build Process
+```bash
+npm run build      # Concatenate components → public/ folder
+npm run watch      # Auto-rebuild on component changes
+npm run lint       # Verify 75-line limit (FAILS if exceeded)
+npm run test       # Lint + TypeCheck + Build
+```
+
+## Development Workflow
+1. Edit components in `/components/`
+2. Keep each file ≤75 lines
+3. Run `npm run build` to generate `/public/` files
+4. Open `/public/query-builder.html` in browser
+5. Commit & push after each component change
+
+## Workshop Files
+- **USE THESE**: `public/query-builder.html`, `public/filter-builder.html`
+- **NOT THESE**: Individual components (for dev only)
+
+## Placeholder Syntax
+Use `{curly_braces}` NOT `%percent%`:
+- `{query-term}`, `{location-name}`, `{results-number}`
+- `{org_name}`, `{org_short}`, `{location_slug}`
 
 ## Git Workflow
-Atomic commits after every file change, pushed immediately to GitHub.
+Atomic commits after every component change, pushed immediately.

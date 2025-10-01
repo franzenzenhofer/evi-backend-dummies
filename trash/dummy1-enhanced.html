@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Generator - EVI.gv.at</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-extended.css">
+  <style>
+    .help-icon { cursor: help; color: var(--evi-red); margin-left: 5px; }
+    .placeholder-help { background: var(--evi-light-gray); padding: 10px; margin: 10px 0; border-left: 3px solid var(--evi-red); }
+    .placeholder-list { display: grid; grid-template-columns: 1fr 2fr; gap: 5px; font-size: 12px; }
+    .placeholder-list code { background: #fff; padding: 2px 5px; border-radius: 3px; }
+    .query-group { background: #fff; padding: 15px; margin: 10px 0; border: 1px solid var(--evi-border); border-radius: 4px; }
+    .query-group h3 { font-size: 14px; margin: 0 0 10px 0; color: var(--evi-gray); }
+    .filter-chip { display: inline-block; background: var(--evi-red); color: #fff; padding: 5px 10px; border-radius: 15px;
+      margin: 2px; font-size: 12px; }
+    .inline-help { font-size: 11px; color: var(--evi-gray); margin-top: 3px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logo.svg" alt="EVI.gv.at Logo" class="logo">
+      <h1>Landing Page Generator - Einzelseite</h1>
+    </div>
+
+    <div class="layout">
+      <div class="main-content">
+        <div class="section">
+          <h2>01. Basis</h2>
+          <div class="form-group">
+            <label>Seitenname (intern) <span class="help-icon" title="Nur für interne Verwaltung">ℹ️</span></label>
+            <input type="text" value="Insolvenzen Wien" placeholder="z.B. Insolvenzen - Wien">
+            <span class="inline-help">Dieser Name erscheint nur im Backend, nicht auf der Seite</span>
+          </div>
+          <div class="form-group">
+            <label>URL-Slug <span class="help-icon" title="Automatische 301-Weiterleitung bei Änderung">ℹ️</span></label>
+            <input type="text" value="/lp/insolvenzen-wien" placeholder="/lp/...">
+            <span class="inline-help">Bei Änderung wird automatisch eine 301-Weiterleitung erstellt</span>
+          </div>
+          <div class="form-group">
+            <label>Modus</label>
+            <select>
+              <option value="live" selected>Live (immer aktuell, täglich um 03:00 Uhr aktualisiert)</option>
+              <option value="snapshot">Snapshot (IDs zum Publish-Zeitpunkt eingefroren)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>02. Query Builder - Suchkonfiguration</h2>
+          <div class="query-group">
+            <h3>Index & Volltext</h3>
+            <div class="form-group">
+              <label>Index</label>
+              <select>
+                <option value="insolvenzen" selected>Insolvenzen</option>
+                <option value="jobs">Jobs</option>
+                <option value="ausschreibungen">Ausschreibungen</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Volltext-Suche <span class="help-icon" title="Sucht in allen Textfeldern">ℹ️</span></label>
+              <input type="text" placeholder="z.B. 'Bau Handel' (optional)">
+            </div>
+          </div>
+
+          <div class="query-group">
+            <h3>Geografie</h3>
+            <div class="form-group">
+              <label>Bundesland</label>
+              <select multiple size="3">
+                <option value="wien" selected>Wien</option>
+                <option value="noe">Niederösterreich</option>
+                <option value="ooe">Oberösterreich</option>
+              </select>
+            </div>
