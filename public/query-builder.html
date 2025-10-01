@@ -318,8 +318,29 @@
           </div>
         </div>
 
+        <div class="section" id="section-02d">
+          <h2>02d. Headline & Intro</h2>
+
+          <div class="form-group">
+            <label>H1 Überschrift</label>
+            <input type="text" value="Insolvenzen in {location-name} {separator} {time-window}"
+                   placeholder="z.B. Jobs {org-name} {location-name}">
+            <span class="inline-help">
+              Server-seitig gerendert. Fehlende Werte werden ausgelassen. Verwenden Sie {separator} für " - ".
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser (Rich Text)</label>
+            <textarea rows="3">Aktuelle Übersicht zu {results-number} Unternehmensinsolvenzen in {location-name}. Alle Fälle aus {time-window}.</textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+          </div>
+        </div>
+
         <div class="section" id="section-03">
-          <h2>03. Content</h2>
+          <h2>03. Content & SEO</h2>
 
           <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
             <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
@@ -385,6 +406,12 @@
               <span>→ "EVI.gv.at"</span>
 
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{separator}')">
+                {separator}
+              </code>
+              <span>→ " - " (Trennzeichen, z.B. für Titles)</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
                     onclick="navigator.clipboard.writeText('{top-facet:branche}')">
                 {top-facet:branche}
               </code>
@@ -398,24 +425,14 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label>H1 Überschrift</label>
-            <input type="text" value="Insolvenzen in {location-name} – {time-window}"
-                   placeholder="z.B. Jobs {org-name} {location-name}">
-            <span class="inline-help">
-              Server-seitig gerendert. Fehlende Werte werden ausgelassen.
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>Intro / Teaser (Rich Text)</label>
-            <textarea rows="3">Aktuelle Übersicht zu {results-number} Unternehmensinsolvenzen in {location-name}. Alle Fälle aus {time-window}.</textarea>
-          </div>
+          <h3 style="font-size: 15px; margin: 25px 0 15px 0;">Content-Blöcke</h3>
 
           <div class="form-group">
             <label>Body VOR der Liste (Rich Text, optional)</label>
             <textarea rows="3" placeholder="Einleitungstext, Kontext, Hinweise..."></textarea>
-            <span class="inline-help">Optional: Module-Embeds möglich</span>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
           </div>
 
           <div class="form-group">
@@ -444,23 +461,24 @@
 
           <div class="form-group">
             <label>Body NACH der Liste (Rich Text, optional)</label>
-            <textarea rows="3" placeholder="FAQ, Erklärungen, CTAs, weitere Informationen..."></textarea>
-            <span class="inline-help">Optional: FAQPage Schema, wenn strukturiert</span>
+            <textarea rows="3" placeholder="Erklärungen, CTAs, weitere Informationen..."></textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
           </div>
         </div>
 
-        <div class="section" id="section-04">
-          <h2>04. SEO</h2>
+          <h3 style="font-size: 15px; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid var(--evi-border);">03.1 SEO</h3>
 
           <div class="form-group">
             <label>
-              Meta Title
+              Meta Title {separator} {brand}
               <span style="color: var(--evi-gray); font-weight: normal;">(max 60 Zeichen empfohlen)</span>
             </label>
-            <input type="text" value="Insolvenzen Wien – aktuelle Fälle"
-                   placeholder="z.B. {query-term} {location-name}">
+            <input type="text" value="Insolvenzen Wien {separator} aktuelle Fälle {separator} {brand}"
+                   placeholder="z.B. {query-term} {location-name} {separator} {brand}">
             <span class="inline-help">
-              Aktuell: <strong>35 Zeichen</strong> ✅ (Platzhalter unterstützt)
+              Aktuell: <strong>52 Zeichen</strong> ✅ (Platzhalter unterstützt). {separator} = " - "
             </span>
           </div>
 
@@ -515,9 +533,6 @@
                 </select>
               </label>
             </div>
-            <span class="inline-help">
-              Nur Seite 1 wird in Sitemap gelistet (bei Pagination)
-            </span>
           </div>
 
           <div class="form-group">
@@ -546,7 +561,7 @@
               <label>
                 <input type="radio" name="og-image" value="upload"> Upload eigenes Bild
               </label>
-              <input type="file" accept="image/*" style="margin-left: 10px; display: none;" id="og-upload">
+              <input type="file" accept="image/*" style="margin-left: 10px;">
             </div>
           </div>
 
@@ -578,6 +593,79 @@
               <option value="multi">Mehrsprachig...</option>
             </select>
           </div>
+
+          <h3 style="font-size: 15px; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid var(--evi-border);">03.2 Interlinking</h3>
+
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Fügen Sie automatische Verlinkungsblöcke hinzu. Default: 5 zufällige Links mit "EVI.gv.at Archiv" Headline.
+          </p>
+
+          <div id="interlinking-blocks">
+            <!-- Default Block -->
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 13px;">Interlinking Block #1</strong>
+                <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕</button>
+              </div>
+
+              <div class="form-group">
+                <label>Überschrift für diesen Block</label>
+                <input type="text" value="EVI.gv.at Archiv" placeholder="z.B. Verwandte Seiten, Mehr zum Thema...">
+              </div>
+
+              <div class="form-group">
+                <label>Link-Typ</label>
+                <select onchange="this.nextElementSibling.style.display = this.value === 'random' ? 'none' : 'block'">
+                  <option value="random" selected>5 komplett zufällige Links (index pages only)</option>
+                  <option value="new">5 neueste Einträge</option>
+                  <option value="sensemaking">5 thematisch ähnliche (Sensemaking)</option>
+                  <option value="custom">Custom Query (Mini-Filter)</option>
+                </select>
+                <div style="display: none; margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray);">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Datenquelle</label>
+                    <select style="font-size: 12px;">
+                      <option>Alle</option>
+                      <option>Insolvenzen</option>
+                      <option>Jobs</option>
+                      <option>Ausschreibungen</option>
+                    </select>
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                    <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Location (optional)</label>
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                  </div>
+
+                  <div>
+                    <label style="font-size: 12px;">Anzahl Links</label>
+                    <input type="number" value="5" min="1" max="20" style="width: 60px; font-size: 12px;">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Position</label>
+                <select>
+                  <option>Im Hauptinhalt (nach Liste)</option>
+                  <option>Sidebar (rechts)</option>
+                  <option>Footer-Bereich</option>
+                </select>
+                <span class="inline-help">
+                  Links werden als <code>&lt;ul&gt;&lt;li&gt;&lt;a&gt;</code> gerendert. Überschrift als <code>&lt;h3&gt;</code>.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <button class="secondary" onclick="alert('Neuen Interlinking Block hinzufügen')">+ Weiterer Interlinking Block</button>
         </div>
 
         <div class="section" id="section-06">

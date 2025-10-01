@@ -40,7 +40,7 @@
           </p>
 
           <div class="form-group">
-            <label>Index/Domain wählen</label>
+            <label>Datenquelle wählen</label>
             <select>
               <option>Insolvenzen (insolvenzen.evi.gv.at)</option>
               <option>Jobs (jobs.evi.gv.at)</option>
@@ -48,6 +48,9 @@
               <option>Förderungen (foerderungen.evi.gv.at)</option>
               <option>Immobilien (immobilien.evi.gv.at)</option>
             </select>
+            <span class="inline-help">
+              Für Bulk-Generierung: Eine Datenquelle pro Batch. Mehrere Quellen = separate Batches.
+            </span>
           </div>
 
           <div class="form-group">
@@ -57,7 +60,16 @@
               <option>Custom Template (Upload HTML)</option>
             </select>
             <span class="inline-help">
-              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, etc.
+              Template wird für ALLE generierten Seiten verwendet. Platzhalter: {org-name}, {location-name}, {brand}, etc.
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" checked> Zeige abgelaufenen Content
+            </label>
+            <span class="inline-help">
+              Gilt für alle generierten Seiten. Einige Content-Typen wie Jobs haben ein Ablaufdatum.
             </span>
           </div>
 
