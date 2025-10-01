@@ -1,0 +1,23 @@
+        <div class="section" id="section-04">
+          <h2>04. Headline & Intro Template</h2>
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Template gilt für ALLE generierten Seiten. Platzhalter werden pro Seite ersetzt.
+          </p>
+
+          <div class="form-group">
+            <label>H1 Überschrift Template</label>
+            <input type="text" value="{org_name} {location_name} {separator} {brand}"
+                   placeholder="z.B. {org_name} {location_name}">
+            <span class="inline-help">
+              Verfügbare Platzhalter: {org_name}, {org_short}, {location_name}, {separator}, {results-number}, {brand}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Intro / Teaser Template (Rich Text)</label>
+            <textarea rows="3">Aktuelle Informationen zu {org_name} in {location_name}. {results-number} Einträge verfügbar.</textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
+          </div>
+        </div>
