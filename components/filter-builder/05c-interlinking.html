@@ -1,0 +1,213 @@
+        <div class="section" id="section-05">
+          <h2>05. Interlinking</h2>
+
+          <p style="font-size: 13px; color: var(--evi-gray); margin-bottom: 15px;">
+            Fügen Sie automatische Verlinkungsblöcke hinzu. Default: 2 Blöcke mit je 5 zufälligen Links.
+          </p>
+
+          <div id="interlinking-blocks">
+            <!-- Block 1 -->
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 13px;">Interlinking Block #1</strong>
+                <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕</button>
+              </div>
+
+              <div class="form-group">
+                <label>Überschrift für diesen Block</label>
+                <input type="text" value="EVI.gv.at Archiv" placeholder="z.B. Verwandte Seiten, Mehr zum Thema...">
+              </div>
+
+              <div class="form-group">
+                <label>Link-Typ</label>
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
+                  <option value="random-main" selected>Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query">Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
+                  <option value="custom">Custom Query (Mini Query Filter)</option>
+                  <option value="editorial">Editorial Links</option>
+                </select>
+
+                <!-- Mini Query Builder - always visible, grayed out unless Custom -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Datenquelle</label>
+                    <select style="font-size: 12px;">
+                      <option>Alle</option>
+                      <option>Insolvenzen</option>
+                      <option>Jobs</option>
+                      <option>Ausschreibungen</option>
+                    </select>
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                    <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Location (optional)</label>
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                  </div>
+                </div>
+
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
+                  <div id="editorial-links">
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                  </div>
+                  <button class="secondary" style="font-size: 11px;" onclick="alert('Link hinzufügen')">+ Link</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Anzahl Links</label>
+                <input type="number" value="5" min="1" max="50" style="width: 80px;">
+              </div>
+            </div>
+
+            <!-- Block 2 (default visible) -->
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin: 15px 0; background: #fff; border-radius: 4px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <strong style="font-size: 13px;">Interlinking Block #2</strong>
+                <button class="secondary" style="padding: 3px 8px; font-size: 11px;" onclick="alert('Block entfernen')">✕</button>
+              </div>
+
+              <div class="form-group">
+                <label>Überschrift für diesen Block</label>
+                <input type="text" value="Weitere Informationen" placeholder="z.B. Verwandte Seiten...">
+              </div>
+
+              <div class="form-group">
+                <label>Link-Typ</label>
+                <select onchange="
+                  var miniBuilder = this.nextElementSibling;
+                  var editorialLinks = miniBuilder.nextElementSibling;
+                  if (this.value === 'custom') {
+                    miniBuilder.style.opacity = '1';
+                    miniBuilder.style.pointerEvents = 'auto';
+                  } else {
+                    miniBuilder.style.opacity = '0.5';
+                    miniBuilder.style.pointerEvents = 'none';
+                  }
+                  if (this.value === 'editorial') {
+                    editorialLinks.style.opacity = '1';
+                    editorialLinks.style.pointerEvents = 'auto';
+                  } else {
+                    editorialLinks.style.opacity = '0.5';
+                    editorialLinks.style.pointerEvents = 'none';
+                  }
+                ">
+                  <option value="random-main">Neueste (gleiche Query wie Main-Liste)</option>
+                  <option value="random-query">Random (gleiche Query wie Main-Liste)</option>
+                  <option value="newest-other-query" selected>Links zu anderen Query Pages - Neueste</option>
+                  <option value="random-other-query">Links zu anderen Query Pages - Random</option>
+                  <option value="newest-filter">Links zu anderen Filter Pages - Neueste</option>
+                  <option value="random-filter">Links zu anderen Filter Pages - Random</option>
+                  <option value="custom">Custom Query (Mini Query Filter)</option>
+                  <option value="editorial">Editorial Links</option>
+                </select>
+
+                <!-- Mini Query Builder - always visible, grayed out unless Custom -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Mini Query Builder</strong>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Datenquelle</label>
+                    <select style="font-size: 12px;">
+                      <option>Alle</option>
+                      <option>Insolvenzen</option>
+                      <option>Jobs</option>
+                      <option>Ausschreibungen</option>
+                    </select>
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Volltext-Filter (optional)</label>
+                    <input type="text" placeholder="z.B. Bau, Handel" style="font-size: 12px;">
+                  </div>
+                  <div style="margin-bottom: 10px;">
+                    <label style="font-size: 12px;">Location (optional)</label>
+                    <input type="text" placeholder="z.B. Wien, Niederösterreich" style="font-size: 12px;">
+                  </div>
+                </div>
+
+                <!-- Editorial Links - always visible, grayed out unless Editorial -->
+                <div style="margin-top: 10px; padding: 15px; border: 1px solid var(--evi-border); background: var(--evi-light-gray); opacity: 0.5; pointer-events: none;">
+                  <strong style="font-size: 12px; display: block; margin-bottom: 10px;">Editorial Links</strong>
+                  <div id="editorial-links-2">
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL (z.B. /lp/jobs-wien)" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                    <div style="margin-bottom: 10px; padding: 10px; border: 1px solid var(--evi-border); background: #fff;">
+                      <input type="text" placeholder="URL" style="width: 60%; margin-right: 5px; font-size: 12px;">
+                      <input type="text" placeholder="Linktext" style="width: 35%; font-size: 12px;">
+                    </div>
+                  </div>
+                  <button class="secondary" style="font-size: 11px;" onclick="alert('Link hinzufügen')">+ Link</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Anzahl Links</label>
+                <input type="number" value="5" min="1" max="50" style="width: 80px;">
+              </div>
+            </div>
+          </div>
+
+          <button class="secondary" onclick="alert('Neuen Interlinking Block hinzufügen')">+ Weiterer Interlinking Block</button>
+        </div>
+        <!-- End of section-05 -->

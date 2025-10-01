@@ -1,0 +1,109 @@
+          <h3 style="font-size: 15px; margin: 30px 0 15px 0; padding-top: 20px; border-top: 2px solid var(--evi-border);">04.1 SEO</h3>
+
+          <div class="form-group">
+            <label>
+              Meta Title {separator} {brand}
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 60 Zeichen empfohlen)</span>
+            </label>
+            <input type="text" value="Insolvenzen Wien {separator} aktuelle Fälle {separator} {brand}"
+                   placeholder="z.B. {query-term} {location-name} {separator} {brand}">
+            <span class="inline-help">
+              Aktuell: <strong>52 Zeichen</strong> ✅ (Platzhalter unterstützt). {separator} = " - "
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Meta Description
+              <span style="color: var(--evi-gray); font-weight: normal;">(max 160 Zeichen empfohlen)</span>
+            </label>
+            <textarea rows="2">{results-number} Insolvenzen in {location-name}. Trends & Verteilung nach Bezirken.</textarea>
+            <span class="inline-help">
+              Aktuell: <strong>78 Zeichen</strong> ✅ (Platzhalter unterstützt)
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Canonical</label>
+            <select>
+              <option value="self" selected>Self (diese Seite)</option>
+              <option value="custom">Custom URL...</option>
+              <option value="none">Keine</option>
+            </select>
+            <span class="inline-help">
+              Bei Pagination: Seite 2+ canonical → Seite 1
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label>Robots</label>
+            <div style="display: flex; gap: 15px;">
+              <label><input type="checkbox" checked> Index</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Sitemap</label>
+            <label><input type="checkbox" checked> In Sitemap aufnehmen</label>
+          </div>
+
+          <div class="form-group">
+            <label>Pagination Policy</label>
+            <select>
+              <option value="paginate" selected>Paginiert (Canonical zu Seite 1)</option>
+              <option value="loadmore">Single Page mit "Load More" (kein Crawl)</option>
+              <option value="all">Alle Ergebnisse auf einer Seite anzeigen</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>OpenGraph</label>
+            <input type="text" placeholder="OG Title (optional, sonst Meta Title)">
+            <textarea rows="2" placeholder="OG Description (optional, sonst Meta Description)"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>OG Image</label>
+            <div>
+              <label>
+                <input type="radio" name="og-image" value="auto" checked> Auto-generieren (Title + Metric Badge)
+              </label>
+            </div>
+            <div style="margin-top: 10px;">
+              <label>
+                <input type="radio" name="og-image" value="upload"> Upload eigenes Bild
+              </label>
+              <input type="file" accept="image/*" style="margin-left: 10px;">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>FAQ Editor (Schema.org)</label>
+            <span class="inline-help">
+              Erstellen Sie FAQs. Schema.org FAQPage wird automatisch generiert.
+            </span>
+            <div style="border: 1px solid var(--evi-border); padding: 15px; margin-top: 10px; background: #fff;">
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 1:</label>
+                <input type="text" placeholder="z.B. Was sind Insolvenzen?" style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <div style="margin-bottom: 15px;">
+                <label style="font-weight: bold; display: block; margin-bottom: 5px;">Frage 2:</label>
+                <input type="text" placeholder="Weitere Frage..." style="margin-bottom: 5px;">
+                <textarea rows="2" placeholder="Antwort..."></textarea>
+              </div>
+              <button class="secondary" onclick="alert('FAQ hinzufügen')">+ FAQ hinzufügen</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Hreflang (Multi-Language)</label>
+            <select>
+              <option value="none" selected>Keine (nur de-AT)</option>
+              <option value="de-de">de-AT + de-DE</option>
+              <option value="multi">Mehrsprachig...</option>
+            </select>
+          </div>
+        </div>
+        <!-- End of section-04 -->
