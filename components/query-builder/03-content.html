@@ -1,5 +1,5 @@
         <div class="section" id="section-03">
-          <h2>03. Content</h2>
+          <h2>03. Content & SEO</h2>
 
           <div style="background: #fffbcc; border-left: 4px solid #ffc107; padding: 15px; margin: 10px 0;">
             <strong>💡 Verfügbare Platzhalter (klicken zum Kopieren):</strong>
@@ -65,6 +65,12 @@
               <span>→ "EVI.gv.at"</span>
 
               <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
+                    onclick="navigator.clipboard.writeText('{separator}')">
+                {separator}
+              </code>
+              <span>→ " - " (Trennzeichen, z.B. für Titles)</span>
+
+              <code style="background: #fff; padding: 4px 8px; border-radius: 3px; cursor: pointer;"
                     onclick="navigator.clipboard.writeText('{top-facet:branche}')">
                 {top-facet:branche}
               </code>
@@ -78,24 +84,14 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label>H1 Überschrift</label>
-            <input type="text" value="Insolvenzen in {location-name} – {time-window}"
-                   placeholder="z.B. Jobs {org-name} {location-name}">
-            <span class="inline-help">
-              Server-seitig gerendert. Fehlende Werte werden ausgelassen.
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label>Intro / Teaser (Rich Text)</label>
-            <textarea rows="3">Aktuelle Übersicht zu {results-number} Unternehmensinsolvenzen in {location-name}. Alle Fälle aus {time-window}.</textarea>
-          </div>
+          <h3 style="font-size: 15px; margin: 25px 0 15px 0;">Content-Blöcke</h3>
 
           <div class="form-group">
             <label>Body VOR der Liste (Rich Text, optional)</label>
             <textarea rows="3" placeholder="Einleitungstext, Kontext, Hinweise..."></textarea>
-            <span class="inline-help">Optional: Module-Embeds möglich</span>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
           </div>
 
           <div class="form-group">
@@ -124,7 +120,9 @@
 
           <div class="form-group">
             <label>Body NACH der Liste (Rich Text, optional)</label>
-            <textarea rows="3" placeholder="FAQ, Erklärungen, CTAs, weitere Informationen..."></textarea>
-            <span class="inline-help">Optional: FAQPage Schema, wenn strukturiert</span>
+            <textarea rows="3" placeholder="Erklärungen, CTAs, weitere Informationen..."></textarea>
+            <label style="margin-top: 5px;">
+              <input type="checkbox"> Als HTML interpretieren
+            </label>
           </div>
         </div>

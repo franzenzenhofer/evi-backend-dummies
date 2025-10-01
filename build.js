@@ -27,8 +27,10 @@ buildHTML('query-builder.html', [
   'query-builder/02-query-builder.html',
   'query-builder/02b-time-status.html',
   'query-builder/02c-quality-sort.html',
+  'query-builder/02d-headline.html',
   'query-builder/03-content.html',
-  'query-builder/04-seo.html',
+  'query-builder/03b-seo.html',
+  'query-builder/03c-interlinking.html',
   'query-builder/06-qc-publish.html',
   'query-builder/99-foot.html'
 ]);
